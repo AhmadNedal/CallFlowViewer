@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Roslyn extensions loaded by Visual Studio must target netstandard2.0 -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>CallFlowViewer</RootNamespace>
+    <IsRoslynComponent>true</IsRoslynComponent>
+
+    <!-- NuGet packaging: ship the dll as an analyzer, not as a lib reference -->
+    <IsPackable>true</IsPackable>
+    <PackageId>CallFlowViewer</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>CallFlowViewer</Authors>
+    <Description>Press Ctrl+. on any C# method and choose "Show call flow to this method" to open an HTML page explaining every path that leads to it.</Description>
+    <PackageTags>roslyn;refactoring;call-graph;call-hierarchy;visual-studio</PackageTags>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+
+    <!--
+      RS1035/RS1036/RS1038: analyzer-rule warnings about file IO, Process.Start and
+      referencing Workspaces. They are expected here: this is a refactoring (runs only
+      when the user picks it), not a diagnostic analyzer that runs on every build.
+    -->
+    <NoWarn>$(NoWarn);RS1035;RS1036;RS1038;RS2008;NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 4.8.0 = Visual Studio 2022 17.8+. Do not go higher than the Roslyn version inside your VS. -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Report\template.html" LogicalName="CallFlowViewer.template.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+</Project>
