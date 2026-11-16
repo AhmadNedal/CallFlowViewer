@@ -11,7 +11,11 @@
     <IsPackable>true</IsPackable>
     <PackageId>CallFlowViewer</PackageId>
     <Version>0.1.0</Version>
-    <Authors>CallFlowViewer</Authors>
+    <Authors>Ahmad Nedal</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://ahmadnedal.me</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AhmadNedal/CallFlowViewer</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
     <Description>Press Ctrl+. on any C# method and choose "Show call flow to this method" to open an HTML page explaining every path that leads to it.</Description>
     <PackageTags>roslyn;refactoring;call-graph;call-hierarchy;visual-studio</PackageTags>
     <IncludeBuildOutput>false</IncludeBuildOutput>

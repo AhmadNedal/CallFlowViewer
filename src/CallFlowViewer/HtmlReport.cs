@@ -21,7 +21,7 @@ namespace CallFlowViewer
 
         public static string RenderError(ISymbol target, Exception ex)
         {
-            return "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>Call flow – error</title></head>" +
+            return "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>Call flow - error</title></head>" +
                    "<body style=\"font-family:Segoe UI,sans-serif;padding:32px\"><h2>Could not analyse " +
                    WebUtility.HtmlEncode(SymbolText.Display(target)) + "</h2><pre style=\"white-space:pre-wrap\">" +
                    WebUtility.HtmlEncode(ex.ToString()) + "</pre></body></html>";
@@ -57,7 +57,27 @@ namespace CallFlowViewer
                 s.Append("\"line\":").Append(n.Line).Append(',');
                 Prop(s, "entryKind", n.EntryKind).Append(',');
                 Prop(s, "entryDetail", n.EntryDetail).Append(',');
-                s.Append("\"cut\":").Append(n.Cut ? "true" : "false");
+                s.Append("\"cut\":").Append(n.Cut ? "true" : "false").Append(',');
+                Prop(s, "kind", n.Kind).Append(',');
+                Prop(s, "signature", n.Signature).Append(',');
+                Prop(s, "containingType", n.ContainingType).Append(',');
+                Prop(s, "access", n.Accessibility).Append(',');
+                Prop(s, "returns", n.ReturnType).Append(',');
+                Prop(s, "summary", n.Summary).Append(',');
+                s.Append("\"sourceStart\":").Append(n.SourceStart).Append(',');
+                s.Append("\"sourceTruncated\":").Append(n.SourceTruncated ? "true" : "false").Append(',');
+                StringArray(s, "source", n.Source).Append(',');
+                StringArray(s, "modifiers", n.Modifiers).Append(',');
+                StringArray(s, "attributes", n.Attributes).Append(',');
+                s.Append("\"parameters\":[");
+                s.Append(string.Join(",", n.Parameters.Select(p =>
+                {
+                    var t = new StringBuilder("{");
+                    Prop(t, "name", p.Key).Append(',');
+                    Prop(t, "type", p.Value);
+                    return t.Append('}').ToString();
+                })));
+                s.Append(']');
                 return s.Append('}').ToString();
             })));
             sb.Append("],");
@@ -76,6 +96,9 @@ namespace CallFlowViewer
                     var t = new StringBuilder("{");
                     Prop(t, "file", site.File).Append(',');
                     t.Append("\"line\":").Append(site.Line).Append(',');
+                    t.Append("\"column\":").Append(site.Column).Append(',');
+                    t.Append("\"contextStart\":").Append(site.ContextStart).Append(',');
+                    StringArray(t, "context", site.Context).Append(',');
                     Prop(t, "code", site.Code);
                     return t.Append('}').ToString();
                 })));
@@ -86,9 +109,27 @@ namespace CallFlowViewer
             return sb.ToString();
         }
 
+        private static StringBuilder StringArray(StringBuilder sb, string name, System.Collections.Generic.IEnumerable<string> values)
+        {
+            sb.Append('"').Append(name).Append("\":[");
+            var first = true;
+            foreach (var v in values)
+            {
+                if (!first) sb.Append(',');
+                first = false;
+                Str(sb, v);
+            }
+            return sb.Append(']');
+        }
+
         private static StringBuilder Prop(StringBuilder sb, string name, string value)
         {
             sb.Append('"').Append(name).Append("\":");
+            return Str(sb, value);
+        }
+
+        private static StringBuilder Str(StringBuilder sb, string value)
+        {
             if (value == null) return sb.Append("null");
             sb.Append('"');
             foreach (var c in value)

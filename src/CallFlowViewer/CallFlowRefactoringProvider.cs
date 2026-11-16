@@ -70,7 +70,7 @@ namespace CallFlowViewer
             return null;
         }
 
-        /// <summary>Caret is on a call, e.g. _service.PlaceOrder(...) → flow to PlaceOrder.</summary>
+        /// <summary>Caret is on a call, e.g. _service.PlaceOrder(...) -> flow to PlaceOrder.</summary>
         private static ISymbol GetReferencedSymbol(SyntaxNode node, SemanticModel model, System.Threading.CancellationToken ct)
         {
             var name = node as SimpleNameSyntax ?? node.FirstAncestorOrSelf<SimpleNameSyntax>();

@@ -4,10 +4,11 @@ Put the caret on any C# method in Visual Studio, press **Ctrl+.** and choose
 **"Show call flow to this method"**. An HTML page opens in your browser that shows
 every path in the solution that leads to that method:
 
-- **Paths**: each route from a starting point (HTTP endpoint, test, background service,
-  `Main`, event handler…) down to your method, step by step. Every step shows the exact
-  line of code that makes the call.
-- **Graph**: the same information as one diagram.
+- **Step by step**: pick where the flow starts (an HTTP endpoint, a test, a background
+  service...) and read the flow as a short numbered story, one method per step.
+  The calling code is one click away.
+- **Big picture**: a diagram of every flow, from the starting points on the left to
+  your method on the right. Click a box to keep only the flows that pass through it.
 
 ## Build the package
 

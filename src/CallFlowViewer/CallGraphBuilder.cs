@@ -27,13 +27,30 @@ namespace CallFlowViewer
         public string EntryKind;   // null when the node has callers
         public string EntryDetail; // e.g. "POST api/orders"
         public bool Cut;           // callers were not explored (depth / size limit)
+
+        // Details shown in the report
+        public string Kind;           // Method / Constructor / Property / Operator
+        public string Signature;      // public async Task<Guid> OrderService.PlaceOrderAsync(string customer)
+        public string ContainingType; // Shop.Core.OrderService
+        public string Accessibility;  // public / internal / ...
+        public string ReturnType;
+        public string Summary;        // XML doc <summary>
+        public readonly List<string> Modifiers = new List<string>();
+        public readonly List<string> Attributes = new List<string>();
+        public int SourceStart;       // line number of Source[0]
+        public bool SourceTruncated;
+        public readonly List<string> Source = new List<string>(); // full code of the member
+        public readonly List<KeyValuePair<string, string>> Parameters = new List<KeyValuePair<string, string>>(); // name -> type
     }
 
     internal sealed class CallSite
     {
         public string File;
         public int Line;
+        public int Column;
         public string Code;
+        public int ContextStart;      // line number of Context[0]
+        public readonly List<string> Context = new List<string>(); // a few lines around the call
     }
 
     internal sealed class FlowEdge
@@ -203,9 +220,43 @@ namespace CallFlowViewer
                 File = span.HasValue ? Relative(span.Value.Path) : null,
                 Line = span.HasValue ? span.Value.StartLinePosition.Line + 1 : 0,
             };
+            SymbolDetails.Fill(node, symbol);
+            FillSource(node, symbol);
             _graph.Nodes.Add(id, node);
             _symbols[id] = symbol;
             return node;
+        }
+
+        private const int MaxSourceLines = 300;
+
+        /// <summary>Full source text of the member, shown when a box is double-clicked in the diagram.</summary>
+        private static void FillSource(FlowNode node, ISymbol symbol)
+        {
+            try
+            {
+                var reference = symbol.DeclaringSyntaxReferences.FirstOrDefault();
+                if (reference == null) return;
+
+                var text = reference.SyntaxTree.GetText();
+                var first = text.Lines.GetLineFromPosition(reference.Span.Start).LineNumber;
+                var last = text.Lines.GetLineFromPosition(reference.Span.End).LineNumber;
+                if (last - first + 1 > MaxSourceLines)
+                {
+                    last = first + MaxSourceLines - 1;
+                    node.SourceTruncated = true;
+                }
+
+                node.SourceStart = first + 1;
+                for (var i = first; i <= last; i++)
+                {
+                    var line = text.Lines[i].ToString().TrimEnd();
+                    node.Source.Add(line.Length > 300 ? line.Substring(0, 297) + "..." : line);
+                }
+            }
+            catch
+            {
+                // The code listing is a bonus: never fail the report because of it.
+            }
         }
 
         private FlowEdge GetOrAddEdge(string from, string to, string via)
@@ -231,7 +282,17 @@ namespace CallFlowViewer
             var text = loc.SourceTree.GetText(ct);
             var code = line < text.Lines.Count ? text.Lines[line].ToString().Trim() : "";
             if (code.Length > 160) code = code.Substring(0, 157) + "...";
-            edge.Sites.Add(new CallSite { File = file, Line = line + 1, Code = code });
+
+            var site = new CallSite { File = file, Line = line + 1, Column = span.StartLinePosition.Character + 1, Code = code };
+            var from = Math.Max(0, line - 2);
+            var to = Math.Min(text.Lines.Count - 1, line + 1);
+            site.ContextStart = from + 1;
+            for (var i = from; i <= to; i++)
+            {
+                var l = text.Lines[i].ToString().TrimEnd();
+                site.Context.Add(l.Length > 200 ? l.Substring(0, 197) + "..." : l);
+            }
+            edge.Sites.Add(site);
         }
 
         private string Relative(string path)
