@@ -12,6 +12,8 @@
     --pink: #b4235a; --pink-soft: #fceaf1; --pink-line: #efb4ca;
     --green: #0f7b55; --green-soft: #e6f6ef; --green-line: #a8dcc5;
     --amber: #95600b; --amber-soft: #fff5de; --amber-line: #f0d49c;
+    --violet: #6d3fc0; --violet-soft: #f1ebfc; --violet-line: #cdb8f2;
+    --red: #b42318; --red-soft: #fdecea; --red-line: #f3b8b2;
     --code-bg: #f3f5f8; --code-hl: #fff6d4; --code-hl-line: #f0c43f;
     --shadow: 0 1px 2px rgba(16,24,40,.05), 0 2px 6px rgba(16,24,40,.06);
     --shadow-lg: 0 14px 36px rgba(16,24,40,.18);
@@ -24,6 +26,8 @@
       --pink: #f37fab; --pink-soft: #3a1e2a; --pink-line: #74344d;
       --green: #55cb9c; --green-soft: #15302a; --green-line: #2b6651;
       --amber: #f2bb55; --amber-soft: #382c16; --amber-line: #6e5423;
+      --violet: #b996f5; --violet-soft: #2a2140; --violet-line: #4f3d7a;
+      --red: #f4877b; --red-soft: #3a1d1a; --red-line: #74352f;
       --code-bg: #242832; --code-hl: #3a3420; --code-hl-line: #c9a227;
       --shadow: none; --shadow-lg: 0 14px 36px rgba(0,0,0,.55);
     }
@@ -122,6 +126,71 @@
   .note { margin-top: 12px; padding: 11px 14px; border-radius: 10px; background: var(--blue-soft); border: 1px solid var(--blue-line); font-size: 14px; }
   .empty { text-align: center; color: var(--muted); padding: 44px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
 
+  .invisible { visibility: hidden; }
+  /* ---------- many starting points ---------- */
+  .sbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+  .sbar input[type=search] { flex: 1; min-width: 240px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--text); font: inherit; }
+  .sbar label { font-size: 13.5px; color: var(--muted); display: inline-flex; gap: 6px; align-items: center; cursor: pointer; white-space: nowrap; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { border: 1.5px solid var(--line); background: var(--card); border-radius: 999px; padding: 4px 12px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--muted); }
+  .chip:hover { border-color: var(--green-line); }
+  .chip.on { border-color: var(--green); color: var(--green); background: var(--green-soft); }
+  .chip .c { font-weight: 500; opacity: .8; margin-left: 4px; }
+  .slist { background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); max-height: 430px; overflow-y: auto; }
+  .sgroup-h { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--soft); border-bottom: 1px solid var(--line); font-weight: 680; font-size: 13.5px; }
+  .sgroup-h .cnt { color: var(--faint); font-weight: 500; }
+  .srow { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto; gap: 12px; align-items: center; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line-2);
+          border-left: 4px solid transparent; background: none; padding: 8px 14px 8px 10px; cursor: pointer; font-size: 14px; }
+  .srow:hover { background: var(--soft); }
+  .srow.on { background: var(--green-soft); border-left-color: var(--green); }
+  .srow .sname { font-weight: 650; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .srow .sname .cls { color: var(--muted); font-weight: 450; }
+  .srow .sdetail { color: var(--muted); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .srow .smeta { color: var(--faint); font-size: 12.5px; white-space: nowrap; }
+  .showall { display: block; width: 100%; border: 0; border-bottom: 1px solid var(--line-2); background: none; padding: 8px 14px; text-align: left; color: var(--blue); cursor: pointer; font-size: 13.5px; }
+  .showall:hover { background: var(--soft); }
+  .scount { color: var(--muted); font-size: 13px; margin: 8px 2px 0; }
+  .waylist { background: var(--card); border: 1px solid var(--line); border-radius: 12px; max-height: 200px; overflow-y: auto; margin-bottom: 16px; }
+  .waylist .lbl { display: block; padding: 8px 14px; color: var(--muted); font-size: 13.5px; border-bottom: 1px solid var(--line); background: var(--soft); position: sticky; top: 0; }
+  .wayrow { display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 10px; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line-2); border-left: 4px solid transparent; background: none; padding: 7px 14px 7px 10px; cursor: pointer; font-size: 13.5px; }
+  .wayrow:hover { background: var(--soft); }
+  .wayrow.on { background: var(--blue-soft); border-left-color: var(--blue); }
+  .wayrow .route { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .wayrow .calls { color: var(--faint); font-size: 12.5px; white-space: nowrap; }
+
+  /* ---------- callers tree ---------- */
+  .tree-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); padding: 14px 18px 18px; margin-top: 22px; }
+  .tree-help { color: var(--muted); font-size: 13.5px; margin: 0 0 12px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  ul.tree { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--line-2); }
+  ul.tree.root { padding-left: 0; border-left: 0; }
+  .trow { display: flex; gap: 8px; align-items: center; padding: 4px 6px; border-radius: 8px; flex-wrap: wrap; }
+  .trow:hover { background: var(--soft); }
+  .tgl { flex: none; width: 22px; height: 22px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); cursor: pointer; font-size: 10px; color: var(--muted); padding: 0; }
+  .tgl:hover { border-color: var(--blue); color: var(--blue); }
+  .tgl.none { border-color: transparent; background: none; cursor: default; }
+  .tname { font-weight: 650; cursor: pointer; word-break: break-word; }
+  .tname:hover { color: var(--blue); }
+  .tname .cls { color: var(--muted); font-weight: 450; }
+  .trow.target .tname { color: var(--pink); }
+  .tbadge { font-size: 11.5px; font-weight: 700; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
+  .tbadge.start { background: var(--green-soft); color: var(--green); border: 1px solid var(--green-line); }
+  .tbadge.via { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-line); }
+  .tbadge.loop { background: var(--amber-soft); color: var(--amber); border: 1px solid var(--amber-line); }
+  .tmeta { color: var(--faint); font-size: 12.5px; white-space: nowrap; }
+
+  /* ---------- diagram controls ---------- */
+  .dg-ctl { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; padding: 10px 14px; border-bottom: 1px solid var(--line-2); font-size: 13.5px; color: var(--muted); }
+  .dg-ctl select { font: inherit; padding: 5px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--text); }
+  .dg-ctl label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+  .dg-top .info { color: var(--faint); font-size: 13px; }
+  #dg .node.cls rect { fill: var(--soft); stroke: var(--blue); }
+  #dg .node.cls rect.shadow { fill: var(--card); stroke: var(--blue-line); }
+  #dg .node.cls.start rect { fill: var(--green-soft); stroke: var(--green); }
+  #dg .node.more rect { stroke: var(--amber); stroke-dasharray: 5 3; }
+  #dg .node .more-t { font-size: 11px; font-weight: 800; fill: var(--amber); }
+  .dg-btns { display: inline-flex; gap: 8px; align-items: center; flex: none; }
+  .dg-note { position: absolute; left: 12px; bottom: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 12.5px; color: var(--muted); box-shadow: var(--shadow); }
+
   /* ---------- big picture ---------- */
   .dg-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; margin-top: 22px; }
   .dg-top { display: flex; gap: 10px 18px; align-items: center; flex-wrap: wrap; padding: 12px 14px; border-bottom: 1px solid var(--line); }
@@ -152,6 +221,27 @@
   #dg .col-h { font-size: 12px; font-weight: 800; letter-spacing: .08em; fill: var(--faint); }
   #dg path.edge { fill: none; stroke: var(--faint); stroke-width: 1.8; }
   #dg path.edge.back { stroke: var(--amber); stroke-dasharray: 3 4; }
+  #dg path.edge.indirect { stroke: var(--violet); stroke-dasharray: 7 4; }
+  #dg path.edge.dibad { stroke: var(--red); stroke-width: 2.2; }
+  .hop .tag.ev, .tbadge.ev { background: var(--violet-soft); color: var(--violet); border: 1px solid var(--violet-line); }
+  .hop .tag.dg, .tbadge.dg { background: var(--violet-soft); color: var(--violet); border: 1px solid var(--violet-line); }
+  .tbadge.bad { background: var(--red-soft); color: var(--red); border: 1px solid var(--red-line); }
+  .di { margin-top: 8px; padding: 7px 11px; border-radius: 8px; font-size: 13.5px; border: 1px solid; }
+  .di.ok { background: var(--green-soft); color: var(--text); border-color: var(--green-line); }
+  .di.ok .ic { color: var(--green); font-weight: 800; }
+  .di.bad { background: var(--red-soft); color: var(--text); border-color: var(--red-line); }
+  .di.bad .ic { color: var(--red); font-weight: 800; }
+  .di.warn { background: var(--amber-soft); color: var(--text); border-color: var(--amber-line); }
+  .di.warn .ic { color: var(--amber); font-weight: 800; }
+  .di .mono { font-size: 12px; color: var(--muted); }
+  .note code { font-size: 12.5px; background: var(--card); padding: 1px 6px; border-radius: 5px; }
+  .answer .warnline { display: block; margin-top: 8px; font-size: 14px; color: var(--red); font-weight: 600; }
+  .settings { margin-top: 10px; }
+  .story-tools { display: flex; justify-content: flex-end; margin: -4px 0 10px; }
+  .btn.done { border-color: var(--green); color: var(--green); }
+  li.ext .extl { color: var(--faint); font-size: 13px; font-style: italic; padding: 2px 0; }
+  .tbadge.impl { background: var(--soft); color: var(--muted); border: 1px solid var(--line); }
+  .tbadge.cutb { background: var(--amber-soft); color: var(--amber); border: 1px solid var(--amber-line); }
   #dg path.hit { fill: none; stroke: transparent; stroke-width: 14; cursor: help; }
   #dg.focus .node:not(.on) { opacity: .18; }
   #dg.focus path.edge:not(.on) { opacity: .08; }
@@ -201,13 +291,15 @@
 <div class="wrap">
   <header>
     <div class="eyebrow">Call flow</div>
-    <h1>How does the code reach <span class="t" id="tName"></span>?</h1>
+    <h1 id="h1">How does the code reach <span class="t" id="tName"></span>?</h1>
     <div class="where" id="tWhere"></div>
     <div class="answer" id="answer"></div>
   </header>
 
   <nav class="tabs">
+    <button class="tab hidden" data-view="ctree">Calls tree</button>
     <button class="tab on" data-view="story">Step by step</button>
+    <button class="tab" data-view="tree">Callers tree</button>
     <button class="tab" data-view="picture">Big picture</button>
   </nav>
 
@@ -215,33 +307,75 @@
     <section id="v-story">
       <div id="startsBlock">
         <div class="section-title"><span class="n">1</span>Where does the flow start? <span class="sub">Pick one</span></div>
+        <div id="startsBig" class="hidden">
+          <div class="sbar">
+            <input id="sq" type="search" placeholder="Search starting points by class, method or route...">
+            <label id="hideTestsLbl" class="hidden"><input type="checkbox" id="hideTests"> <span id="hideTestsTxt"></span></label>
+          </div>
+          <div class="chips" id="chips"></div>
+          <div class="slist" id="slist"></div>
+          <div class="scount" id="scount"></div>
+        </div>
         <div class="starts" id="starts"></div>
       </div>
       <div id="flowBlock">
         <div class="section-title"><span class="n" id="flowNum">2</span>Follow the flow <span class="sub" id="flowSub"></span></div>
-        <div class="ways" id="ways"></div>
+        <div id="ways"></div>
+        <div class="story-tools"><button class="btn" id="copyWay" title="Copy this way as a Mermaid diagram, ready to paste into a pull request or a wiki">Copy as Mermaid</button></div>
         <div class="story" id="story"></div>
         <div class="tip">Tip: click <b>More details</b> on any box to see its full code, who calls it and what it calls.</div>
       </div>
       <div id="notes"></div>
     </section>
 
+    <section id="v-ctree" class="hidden">
+      <div class="tree-card">
+        <p class="tree-help"><span>The method you picked is at the top. Under each method are the methods <b>it calls</b>, in the order they appear in the code. Open a row to go one level deeper. Click a name for its details.</span>
+          <button class="btn" id="ctreeCollapse">Collapse all</button></p>
+        <div id="ctree"></div>
+      </div>
+      <div id="ctNotes"></div>
+    </section>
+
+    <section id="v-tree" class="hidden">
+      <div class="tree-card">
+        <p class="tree-help"><span>Your method is at the top. Under each method are the methods that <b>call it</b>. Open a row to go one level further back. Click a name for its details.</span>
+          <button class="btn" id="treeCollapse">Collapse all</button></p>
+        <div id="tree"></div>
+      </div>
+    </section>
+
     <section id="v-picture" class="hidden">
       <div class="dg-card">
         <div class="dg-top">
           <div class="legend">
-            <span class="k"><span class="box" style="background:var(--green-soft);border-color:var(--green)"></span>Where the flow starts</span>
+            <span class="k" id="lgStart"><span class="box" style="background:var(--green-soft);border-color:var(--green)"></span>Where the flow starts</span>
             <span class="k"><span class="box" style="background:var(--card);border-color:var(--blue-line)"></span>Method in between</span>
+            <span class="k"><span class="box" style="background:var(--soft);border-color:var(--blue)"></span>Group (double-click to open)</span>
             <span class="k"><span class="box" style="background:var(--pink-soft);border-color:var(--pink)"></span>Your method</span>
+            <span class="k"><svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" stroke="var(--violet)" stroke-width="2" stroke-dasharray="7 4"/></svg>Through an event / delegate</span>
+            <span class="k"><svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" stroke="var(--red)" stroke-width="2.2"/></svg>DI registers another class</span>
           </div>
           <span class="spacer"></span>
-          <button class="btn hidden" id="dgClear">Show everything</button>
-          <button class="btn sq" id="dgOut" title="Zoom out">&minus;</button>
-          <button class="btn sq" id="dgIn" title="Zoom in">+</button>
-          <button class="btn" id="dgFit">Fit to screen</button>
+          <span class="info" id="dgInfo"></span>
         </div>
-        <div class="dg-help">Read it from <b>left to right</b>: each arrow means <i>"calls"</i>. Click a box to keep only the flows that pass through it. <b>Double-click a box</b> to see its full code and details. Drag to move, Ctrl + scroll to zoom.</div>
-        <div id="dgWrap"><svg id="dg" xmlns="http://www.w3.org/2000/svg"></svg><div class="dg-tip hidden" id="dgTip"></div></div>
+        <div class="dg-ctl">
+          <label><span id="dgDepthLbl">How far back:</span> <select id="dgDepth"></select></label>
+          <label><input type="checkbox" id="dgByClass"> Group methods by class</label>
+          <span class="spacer"></span>
+          <span class="dg-btns">
+            <button class="btn invisible" id="dgClear">Show everything</button>
+            <button class="btn" id="dgMermaid" title="Copy the diagram as Mermaid, ready to paste into a pull request or a wiki">Copy Mermaid</button>
+            <button class="btn" id="dgPng" title="Download the diagram as a PNG image">PNG</button>
+            <button class="btn" id="dgSvg" title="Download the diagram as an SVG image">SVG</button>
+            <button class="btn sq" id="dgOut" title="Zoom out">&minus;</button>
+            <button class="btn sq" id="dgIn" title="Zoom in">+</button>
+            <button class="btn" id="dgFit">Fit to screen</button>
+          </span>
+        </div>
+        <div class="dg-help" id="dgHelp">Read it from <b>left to right</b>: each arrow means <i>"calls"</i>. Click a box to keep only the flows that pass through it. <b>Double-click</b> a method to see its code and details, or a class to open it into its methods. Drag to move, Ctrl + scroll to zoom.</div>
+        <div id="dgWrap"><svg id="dg" xmlns="http://www.w3.org/2000/svg"></svg><div class="dg-tip hidden" id="dgTip"></div>
+          <div class="dg-note hidden" id="dgZoomNote">Showing the part around your method. Drag to see the rest, or press <b>Fit to screen</b>.</div></div>
       </div>
     </section>
   </main>
@@ -254,13 +388,18 @@
 
 <script>
 const DATA = /*__CALLFLOW_DATA__*/null;
-const MAX_PATHS = 300;
+const FWD = !!DATA && DATA.direction === "callees";   // "what this method calls" instead of "who calls it"
+const MAX_WAYS = 200;      // ways listed per starting point
+const BIG_STARTS = 8;      // more starting points than this -> searchable list instead of cards
+const ROWS_PER_GROUP = 20; // rows shown per group before "Show all"
 
 (function () {
   "use strict";
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const plural = (n, one, many) => n + " " + (n === 1 ? one : (many || one + "s"));
+  const lc = g => /^[A-Z][a-z]/.test(g) ? g[0].toLowerCase() + g.slice(1) : g;   // "Unit tests" -> "unit tests", "HTTP endpoints" stays
+  const big = n => n > 9999 ? "9,999+" : n.toLocaleString("en-US");
   if (!DATA) { document.querySelector("main").innerHTML = '<div class="empty">No data.</div>'; return; }
 
   // ================================================================ model
@@ -287,57 +426,90 @@ const MAX_PATHS = 300;
   }
   const loc = n => n.file ? n.file + (n.line ? ":" + n.line : "") : "";
   const viaName = v => (v || "").replace(/^interface /, "").replace(/^base /, "");
+  const clsKey = n => n.containingType || nm(n).cls || "(global)";
 
   // Plain-English description of what starts the flow
   function trigger(n) {
     const k = n.entryKind || "", d = n.entryDetail;
-    const T = (icon, title, sentence, color) => ({ icon, title, sentence, color: color || "" });
-    if (n.cut) return T("?", "Analysis limit", "The analysis stopped here (there may be more callers above it). The flow continues from", "amber");
-    if (k.startsWith("HTTP endpoint")) return T(d ? d.split(" ")[0] : "HTTP", d ? d.slice(d.indexOf(" ") + 1) : "HTTP request", `An HTTP request${d ? " <code>" + esc(d) + "</code>" : ""} arrives, and ASP.NET Core runs`);
-    if (k.startsWith("Unit test")) return T("TEST", "Unit test", "A unit test runs");
-    if (k.startsWith("Background service")) return T("BACKGROUND", "Background service", "When the app starts, the host runs the background service");
-    if (k.startsWith("Message / request handler")) return T("MESSAGE", "Message / request handler", "A request or message is sent (MediatR / message bus), and it is handled by");
-    if (k.startsWith("Middleware")) return T("MIDDLEWARE", "Middleware", "Every HTTP request passes through the middleware");
-    if (k.startsWith("Event handler")) return T("EVENT", "Event handler", "An event fires (for example a button click) and runs");
-    if (k.startsWith("SignalR")) return T("SIGNALR", "SignalR hub", "A connected client calls the hub method");
-    if (k.startsWith("Program start")) return T("START", "Application start", "The application starts and runs");
-    if (k.startsWith("Azure Function")) return T("FUNCTION", "Azure Function", "The Azure Function is triggered and runs");
-    if (k.startsWith("Constructor")) return T("NEW", "Object creation", "An object is created (usually by dependency injection), which runs");
-    if (k.startsWith("Override")) return T("FRAMEWORK", "Framework call", "The framework or base class calls");
-    if (k.startsWith("No callers in this solution")) return T("EXTERNAL", "Called from outside", "Code outside this solution (or reflection) calls", "gray");
-    if (k.startsWith("No callers found")) return T("UNKNOWN", "No callers found", "Nothing in this solution calls this method. It may be unused, or called through reflection:", "gray");
-    return T("START", "Start", "The flow starts at", "gray");
+    const T = (icon, title, sentence, group, rank, color) => ({ icon, title, sentence, group, rank, color: color || "" });
+    if (n.cut) return T("?", "Analysis limit", "The analysis stopped here (there may be more callers above it). The flow continues from", "Analysis limit reached", 14, "amber");
+    if (k.startsWith("HTTP endpoint")) return T(d ? d.split(" ")[0] : "HTTP", d ? d.slice(d.indexOf(" ") + 1) : "HTTP request", `An HTTP request${d ? " <code>" + esc(d) + "</code>" : ""} arrives, and ASP.NET Core runs`, "HTTP endpoints", 0);
+    if (k.startsWith("Unit test")) return T("TEST", "Unit test", "A unit test runs", "Unit tests", 12);
+    if (k.startsWith("Background service")) return T("BACKGROUND", "Background service", "When the app starts, the host runs the background service", "Background services", 2);
+    if (k.startsWith("Message / request handler")) return T("MESSAGE", "Message / request handler", "A request or message is sent (MediatR / message bus), and it is handled by", "Message handlers", 1);
+    if (k.startsWith("Middleware")) return T("MIDDLEWARE", "Middleware", "Every HTTP request passes through the middleware", "Middleware", 4);
+    if (k.startsWith("Event handler")) return T("EVENT", d || "Event handler", d ? `The <b>${esc(d)}</b> fires and runs` : "An event fires (for example a button click) and runs", "Event handlers", 3);
+    if (k.startsWith("SignalR")) return T("SIGNALR", "SignalR hub", "A connected client calls the hub method", "SignalR hubs", 5);
+    if (k.startsWith("Program start")) return T("START", "Application start", "The application starts and runs", "Application start", 6);
+    if (k.startsWith("Azure Function")) return T("FUNCTION", "Azure Function", "The Azure Function is triggered and runs", "Azure Functions", 7);
+    if (k.startsWith("Constructor")) return T("NEW", "Object creation", "An object is created (usually by dependency injection), which runs", "Object creation", 9);
+    if (k.startsWith("Override")) return T("FRAMEWORK", "Framework call", "The framework or base class calls", "Framework calls", 8);
+    if (k.startsWith("No callers in this solution")) return T("EXTERNAL", "Called from outside", "Code outside this solution (or reflection) calls", "Called from outside", 10, "gray");
+    if (k.startsWith("No callers found")) return T("UNKNOWN", "No callers found", "Nothing in this solution calls this method. It may be unused, or called through reflection:", "No callers found", 11, "gray");
+    return T("START", "Start", "The flow starts at", "Other", 13, "gray");
   }
 
-  // ================================================================ paths
-  const paths = [];
-  let capped = false;
-  (function walk(id, ns, es, onPath) {
-    if (paths.length >= MAX_PATHS) { capped = true; return; }
-    const all = callersOf.get(id) || [];
-    const next = all.filter(e => !onPath.has(e.from));
-    if (!next.length) {
-      const top = nodes.get(id);
-      if (ns.length > 1) paths.push({ nodes: ns.slice().reverse(), edges: es.slice().reverse(), end: top.cut ? "cut" : (all.length && !top.entryKind ? "loop" : "start") });
-      return;
-    }
-    for (const e of next) {
-      onPath.add(e.from); ns.push(nodes.get(e.from)); es.push(e);
-      walk(e.from, ns, es, onPath);
-      onPath.delete(e.from); ns.pop(); es.pop();
-      if (capped) return;
-    }
-  })(target.id, [target], [], new Set([target.id]));
-  paths.sort((a, b) => a.nodes.length - b.nodes.length);
+  // ================================================================ analysis
+  // Loops: walk callers from the target; a call coming from a method that is already on the
+  // current chain is a "loop" call and is ignored when counting and listing ways.
+  const seen = new Map(), back = new Set();
+  (function dfs(id) {
+    seen.set(id, 1);
+    for (const e of callersOf.get(id) || []) { const s = seen.get(e.from); if (s === 1) back.add(e); else if (!s) dfs(e.from); }
+    seen.set(id, 2);
+  })(target.id);
+  const inE = id => (callersOf.get(id) || []).filter(e => !back.has(e));
+  const outE = id => (calleesOf.get(id) || []).filter(e => !back.has(e));
 
-  const groupMap = new Map();
-  for (const p of paths) {
-    const s = p.nodes[0];
-    if (!groupMap.has(s.id)) groupMap.set(s.id, { start: s, paths: [] });
-    groupMap.get(s.id).paths.push(p);
+  // dist = fewest calls needed to get from a method to the target
+  // (callee reports: fewest calls from the method you picked)
+  const dist = new Map([[target.id, 0]]);
+  const away = id => FWD ? (calleesOf.get(id) || []).map(e => e.to) : (callersOf.get(id) || []).map(e => e.from);
+  for (let q = [target.id], i = 0; i < q.length; i++)
+    for (const next of away(q[i])) if (!dist.has(next)) { dist.set(next, dist.get(q[i]) + 1); q.push(next); }
+  const maxDist = Math.max(0, ...dist.values());
+
+  const isStart = id => id !== target.id && dist.has(id) && inE(id).length === 0;
+
+  const waysMemo = new Map([[target.id, 1]]);
+  function waysFrom(id) {          // number of different ways from a method to the target
+    if (waysMemo.has(id)) return waysMemo.get(id);
+    let s = 0;
+    for (const e of outE(id)) s += waysFrom(e.to);
+    waysMemo.set(id, s);
+    return s;
   }
-  const rank = g => g.start.cut ? 3 : !g.start.entryKind ? 2 : g.start.entryKind.startsWith("No callers") ? 1 : 0;
-  const groups = [...groupMap.values()].sort((a, b) => rank(a) - rank(b) || a.paths[0].nodes.length - b.paths[0].nodes.length);
+  const aboveMemo = new Map();
+  function startsAbove(id) {       // how many starting points eventually lead to this method
+    if (aboveMemo.has(id)) return aboveMemo.get(id);
+    const vis = new Set([id]);
+    let c = 0;
+    for (let q = [id], i = 0; i < q.length; i++) {
+      if (isStart(q[i])) c++;
+      for (const e of inE(q[i])) if (!vis.has(e.from)) { vis.add(e.from); q.push(e.from); }
+    }
+    aboveMemo.set(id, c);
+    return c;
+  }
+
+  const starts = (FWD ? [] : [...nodes.values()]).filter(n => isStart(n.id)).map(n => {
+    const t = trigger(n), p = nm(n);
+    return { n, t, p, ways: waysFrom(n.id), calls: dist.get(n.id), search: (n.name + " " + (n.entryDetail || "") + " " + (n.file || "") + " " + t.group).toLowerCase() };
+  }).sort((a, b) => a.t.rank - b.t.rank || a.p.cls.localeCompare(b.p.cls) || a.p.m.localeCompare(b.p.m));
+  const startById = new Map(starts.map(s => [s.n.id, s]));
+
+  function enumerate(id) {         // the ways from one starting point, shortest first
+    const out = [], ns = [nodes.get(id)], es = [];
+    let capped = false;
+    (function go(cur) {
+      if (out.length >= MAX_WAYS) { capped = true; return; }
+      if (cur === target.id) { out.push({ nodes: ns.slice(), edges: es.slice() }); return; }
+      for (const e of outE(cur)) { ns.push(nodes.get(e.to)); es.push(e); go(e.to); ns.pop(); es.pop(); if (capped) return; }
+    })(id);
+    out.sort((a, b) => a.nodes.length - b.nodes.length);
+    out.capped = capped;
+    return out;
+  }
 
   // ================================================================ header
   const T = nm(target);
@@ -345,33 +517,98 @@ const MAX_PATHS = 300;
   document.title = "How is " + T.full + " reached?";
   $("tWhere").innerHTML = `${T.cls ? "in class <b>" + esc(T.cls) + "</b>" : ""}${target.file ? ` &middot; <span class="mono">${esc(loc(target))}</span>` : ""}${target.project ? " &middot; project " + esc(target.project) : ""}`;
 
-  if (!paths.length) {
+  const badEdges = edges.filter(e => e.di && (e.di.status === "other" || e.di.status === "missing"));
+  const groupCounts = new Map();
+  for (const s of starts) groupCounts.set(s.t.group, (groupCounts.get(s.t.group) || 0) + 1);
+  const totalWays = starts.reduce((s, x) => s + x.ways, 0);
+
+  if (FWD) {
+    $("h1").innerHTML = `What happens when <span class="t">${esc(T.m)}</span> runs?`;
+    document.title = "What " + T.full + " calls";
+    const direct = new Set((calleesOf.get(target.id) || []).map(e => e.to)).size;
+    const ends = [...nodes.values()].filter(n => n.id !== target.id && !(calleesOf.get(n.id) || []).length).length;
+    const ext = new Set();
+    nodes.forEach(n => (n.external || []).forEach(x => ext.add(x)));
+    $("answer").innerHTML = nodes.size <= 1
+      ? `<b>${esc(T.full)}</b> does not call any other method of your code.` +
+        (ext.size ? `<span class="small">Outside your code it uses: ${[...ext].slice(0, 12).map(esc).join(", ")}.</span>` : "")
+      : `<b>${esc(T.full)}</b> calls <b>${plural(direct, "method")}</b> of your code directly, and reaches <b>${plural(nodes.size - 1, "method")}</b> in total, up to <b>${plural(maxDist, "call")}</b> deep.` +
+        `<span class="small">${ends} of them call nothing else in your code.${ext.size ? ` Outside your code they use ${plural(ext.size, "library method")}, listed in grey in the calls tree.` : ""}</span>` +
+        (badEdges.length ? `<span class="warnline">&#9888; ${plural(badEdges.length, "call")} may never happen at runtime: the DI container is set up to create another class. Look for the red DI badges.</span>` : "");
+  } else if (!starts.length) {
     const t = trigger(target);
     $("answer").innerHTML = `Nothing in this solution calls <b>${esc(T.full)}</b>.<span class="small">${target.entryKind ? esc(t.sentence.replace(/[:]$/, "")) + " it." : ""}</span>`;
   } else {
-    const steps = paths.map(p => p.nodes.length - 1);
-    const mn = Math.min(...steps), mx = Math.max(...steps);
-    $("answer").innerHTML = `<b>${esc(T.full)}</b> can be reached in <b>${plural(paths.length, "way")}</b>${capped ? "+" : ""}, starting from <b>${plural(groups.length, "place")}</b>.` +
-      `<span class="small">${mn === mx ? `Each way passes through ${plural(mn, "call")}.` : `The shortest way takes ${plural(mn, "call")}, the longest takes ${mx}.`}</span>`;
+    const calls = starts.map(s => s.calls), mn = Math.min(...calls), mx = Math.max(...calls);
+    const kinds = [...groupCounts].map(([g, c]) => `${c} ${lc(c === 1 && g.endsWith("s") ? g.slice(0, -1) : g)}`).slice(0, 5).join(", ") + (groupCounts.size > 5 ? ", ..." : "");
+    $("answer").innerHTML = `<b>${esc(T.full)}</b> is reached from <b>${plural(starts.length, "starting point")}</b>, through <b>${plural(nodes.size - 1, "method")}</b>.` +
+      `<span class="small">${starts.length > 1 ? esc(kinds) + ". " : ""}${mn === mx ? `Every start is ${plural(mn, "call")} away` : `The closest start is ${plural(mn, "call")} away, the farthest ${mx}`}. ` +
+      `About ${big(totalWays)} different ${totalWays === 1 ? "way" : "ways"} in total.</span>` +
+      (badEdges.length ? `<span class="warnline">&#9888; ${plural(badEdges.length, "step")} may not happen at runtime: the DI container is not set up to create the class they lead to. Look for the red DI notes.</span>` : "");
   }
 
-  // ================================================================ step by step
-  let curGroup = 0, curPath = 0;
+  // ================================================================ step by step: starting points
+  const isBig = starts.length > BIG_STARTS;
+  const testCount = groupCounts.get("Unit tests") || 0;
+  let query = "", groupSel = null, hideTests = isBig && testCount >= 5 && testCount < starts.length;
+  const showAll = new Set();
+  let cur = null, curWays = [], curPath = 0;
+
+  const visibleStarts = () => starts.filter(s => (!hideTests || s.t.group !== "Unit tests") && (!groupSel || s.t.group === groupSel) && (!query || s.search.includes(query)));
+
+  function startRow(s) {
+    return `<button class="srow ${s.n.id === cur ? "on" : ""}" data-start="${esc(s.n.id)}" title="${esc(s.n.name)}">
+      <span class="sname">${s.p.cls ? `<span class="cls">${esc(s.p.cls)}.</span>` : ""}${esc(s.p.m)}</span>
+      <span class="sdetail mono">${esc(s.n.entryDetail || s.n.file || "")}</span>
+      <span class="smeta">${plural(s.ways, "way")} &middot; ${plural(s.calls, "call")}</span></button>`;
+  }
 
   function renderStarts() {
-    if (!groups.length) { $("startsBlock").classList.add("hidden"); $("flowBlock").classList.add("hidden"); return; }
-    if (groups.length === 1) { $("startsBlock").classList.add("hidden"); $("flowNum").textContent = "1"; }
-    $("starts").innerHTML = groups.map((g, i) => {
-      const t = trigger(g.start), n = nm(g.start);
-      const steps = g.paths.map(p => p.nodes.length - 1);
-      return `<button class="start ${i === curGroup ? "on" : ""}" data-g="${i}">
-        <span class="top"><span class="icon ${t.color}">${esc(t.icon)}</span><span class="title">${esc(t.title)}</span></span>
-        <span class="method">${esc(n.full)}</span>
-        <span class="meta">${plural(g.paths.length, "way")} &middot; ${Math.min(...steps)}${Math.max(...steps) !== Math.min(...steps) ? "-" + Math.max(...steps) : ""} calls to reach your method</span>
-      </button>`;
-    }).join("");
+    if (!starts.length) { $("startsBlock").classList.add("hidden"); $("flowBlock").classList.add("hidden"); return; }
+    if (starts.length === 1) { $("startsBlock").classList.add("hidden"); $("flowNum").textContent = "1"; return; }
+
+    if (!isBig) {
+      $("starts").innerHTML = starts.map(s => `<button class="start ${s.n.id === cur ? "on" : ""}" data-start="${esc(s.n.id)}">
+        <span class="top"><span class="icon ${s.t.color}">${esc(s.t.icon)}</span><span class="title">${esc(s.t.title)}</span></span>
+        <span class="method">${esc(s.p.full)}</span>
+        <span class="meta">${plural(s.ways, "way")} &middot; ${plural(s.calls, "call")} to reach your method</span></button>`).join("");
+      return;
+    }
+
+    $("startsBig").classList.remove("hidden");
+    $("starts").classList.add("hidden");
+    if (testCount && testCount < starts.length) {
+      $("hideTestsLbl").classList.remove("hidden");
+      $("hideTests").checked = hideTests;
+      $("hideTestsTxt").textContent = `Hide unit tests (${testCount})`;
+    }
+    const shownGroups = [...groupCounts].filter(([g]) => !(hideTests && g === "Unit tests"));
+    const allCount = shownGroups.reduce((s, x) => s + x[1], 0);
+    $("chips").innerHTML = `<button class="chip ${!groupSel ? "on" : ""}" data-chip="">All<span class="c">${allCount}</span></button>` +
+      shownGroups.map(([g, c]) => `<button class="chip ${groupSel === g ? "on" : ""}" data-chip="${esc(g)}">${esc(g)}<span class="c">${c}</span></button>`).join("");
+
+    const vis = visibleStarts(), byGroup = new Map();
+    for (const s of vis) (byGroup.get(s.t.group) || byGroup.set(s.t.group, []).get(s.t.group)).push(s);
+    let html = "";
+    for (const [g, list] of byGroup) {
+      const all = query || groupSel || showAll.has(g) || list.length <= ROWS_PER_GROUP + 3;
+      const rows = all ? list : list.slice(0, ROWS_PER_GROUP);
+      if (!all && cur && !rows.some(s => s.n.id === cur)) { const c = list.find(s => s.n.id === cur); if (c) rows.unshift(c); }
+      html += `<div class="sgroup-h">${esc(g)} <span class="cnt">${list.length}</span></div>` + rows.map(startRow).join("") +
+        (all ? "" : `<button class="showall" data-showall="${esc(g)}">Show all ${list.length} ${esc(lc(g))}</button>`);
+    }
+    $("slist").innerHTML = html || `<div class="empty" style="border:0">No starting point matches.</div>`;
+    $("scount").textContent = `Showing ${vis.length} of ${starts.length} starting points.` + (hideTests ? ` ${testCount} unit tests are hidden.` : "");
   }
 
+  function selectStart(id, scroll) {
+    cur = id; curWays = enumerate(id); curPath = 0;
+    document.querySelectorAll("[data-start]").forEach(b => b.classList.toggle("on", b.dataset.start === id));
+    renderStory();
+    if (scroll) $("flowBlock").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // ================================================================ step by step: the story
   function codeBox(s) {
     if (!s.context || !s.context.length) return s.code ? `<div class="codebox"><div class="cl hl"><span class="no">${s.line || ""}</span>${esc(s.code)}</div></div>` : "";
     const lines = s.context.map(l => l.replace(/\t/g, "    "));
@@ -393,57 +630,202 @@ const MAX_PATHS = 300;
     </div>`;
   }
 
+  const diBad = e => !!(e.di && (e.di.status === "other" || e.di.status === "missing"));
+
+  // One line about which class the DI container really creates for a call through an interface.
+  function diLine(e, to) {
+    const d = e.di;
+    if (!d) return "";
+    const where = r => r && r.file ? ` <span class="mono">${esc(r.file)}:${r.line}</span>` : "";
+    const regs = d.regs.map(r => `<b>${esc(r.impl || "a factory")}</b> (${esc(r.lifetime)})${where(r)}`).join(", ");
+    const cls = esc(nm(to).cls || "this class");
+    if (d.status === "registered")
+      return `<div class="di ok"><span class="ic">&#10003;</span> DI: <b>${esc(d.service)}</b> is registered as ${regs}.` +
+        (d.regs.length > 1 ? ` It is registered more than once: when a single instance is injected, the last registration wins.` : "") + `</div>`;
+    if (d.status === "other")
+      return `<div class="di bad"><span class="ic">&#9888;</span> DI: <b>${esc(d.service)}</b> is registered as ${regs}, not as <b>${cls}</b>. ` +
+        `At runtime this call most likely goes to that class instead, so this step may never happen.</div>`;
+    if (d.status === "factory")
+      return `<div class="di warn"><span class="ic">?</span> DI: <b>${esc(d.service)}</b> is created by a factory${where(d.regs[0])}. Which class it returns can't be read from the code.</div>`;
+    if (d.status === "missing")
+      return `<div class="di warn"><span class="ic">&#9888;</span> DI: no registration found for <b>${esc(d.service)}</b>. It may be registered another way (assembly scanning, another library), or not at all.</div>`;
+    return "";
+  }
+
+  const runsOnThread = d => /Task\.Run|Thread|ThreadPool|Timer|Parallel/.test(d || "");
+
   function hop(from, to, e, idx) {
     const s = (e.sites && e.sites[0]) || {};
-    const f = nm(from).m, t = nm(to).m;
-    let text = `<span class="arrow">&darr;</span><b>${esc(f)}</b> calls <b>${esc(t)}</b>${s.line ? ` on line ${s.line}` : ""}`;
-    let explain = "";
+    const f = nm(from).m, t = nm(to).m, kind = e.kind || "call";
+    const on = s.line ? ` on line ${s.line}` : "";
+    let text, explain = "";
+    if (kind === "event") {
+      const sub = (to.subscriptions || []).find(x => x.event === e.detail) || (to.subscriptions || [])[0];
+      text = `<span class="arrow">&darr;</span><b>${esc(f)}</b> raises the <b>${esc(e.detail || "")}</b> event${on}<span class="tag ev">event</span>`;
+      explain += `<b>${esc(t)}</b> is subscribed to this event${sub ? ` (in ${esc(sub.by)}, line ${sub.line})` : ""}, so it runs when the event is raised. `;
+    } else if (kind === "delegate") {
+      text = e.detail === "a function pointer"
+        ? `<span class="arrow">&darr;</span><b>${esc(f)}</b> takes <b>${esc(t)}</b> as a function pointer${on}<span class="tag dg">delegate</span>`
+        : `<span class="arrow">&darr;</span><b>${esc(f)}</b> ${e.detail ? `passes <b>${esc(t)}</b> to <b>${esc(e.detail)}</b>` : `stores <b>${esc(t)}</b> in a delegate`}${on}<span class="tag dg">delegate</span>`;
+      explain += `<b>${esc(t)}</b> is not called here: it runs when ${e.detail && e.detail !== "a function pointer" ? `<b>${esc(e.detail)}</b>` : "whoever holds the delegate"} invokes it${runsOnThread(e.detail) ? ", usually on another thread" : ""}. `;
+    } else {
+      text = `<span class="arrow">&darr;</span><b>${esc(f)}</b> calls <b>${esc(t)}</b>${on}`;
+    }
     if (e.via) {
       text += `<span class="tag via">through ${esc(viaName(e.via))}</span>`;
-      explain += `The code calls the ${e.via.startsWith("base") ? "base class" : "interface"} <b>${esc(viaName(e.via))}</b>. At runtime it lands in <b>${esc(nm(to).cls || t)}</b> when that is the implementation being used. `;
+      if (!e.di) explain += `The code calls the ${e.via.startsWith("base") ? "base class" : "interface"} <b>${esc(viaName(e.via))}</b>. At runtime it lands in <b>${esc(nm(to).cls || t)}</b> when that is the implementation being used. `;
     }
-    if (e.lambda) {
+    if (e.lambda && kind === "call") {
       text += `<span class="tag cb">inside a callback</span>`;
-      explain += `The call is inside a lambda / callback, so it happens when that callback runs. `;
+      explain += s.detail
+        ? `The call is inside a lambda passed to <b>${esc(s.detail)}</b>, so it happens when ${esc(s.detail)} runs the lambda${runsOnThread(s.detail) ? " (usually on another thread)" : ""}. `
+        : `The call is inside a lambda / callback, so it happens when that callback runs. `;
     }
-    if (e.sites && e.sites.length > 1) explain += `It is called from ${e.sites.length} places in this method (lines ${e.sites.slice(0, 5).map(x => x.line).join(", ")}${e.sites.length > 5 ? ", ..." : ""}).`;
-    return `<div class="hop">${text}${explain ? `<span class="explain">${explain}</span>` : ""}
+    if (e.sites && e.sites.length > 1) explain += `It happens in ${e.sites.length} places in this method (lines ${e.sites.slice(0, 5).map(x => x.line).join(", ")}${e.sites.length > 5 ? ", ..." : ""}).`;
+    return `<div class="hop">${text}${explain ? `<span class="explain">${explain}</span>` : ""}${diLine(e, to)}
       ${s.code || (s.context && s.context.length) ? `<button class="toggle" data-code="${idx}">Show code</button>
       <div class="code hidden" id="code-${idx}">${codeBox(s)}${s.file ? `<div class="codefile mono">${esc(s.file)}:${s.line}</div>` : ""}</div>` : ""}
     </div>`;
   }
 
-  function renderStory() {
-    const g = groups[curGroup];
-    if (!g) return;
-    const p = g.paths[curPath];
-    $("ways").innerHTML = g.paths.length > 1
-      ? `<span class="lbl">There are ${g.paths.length} ways from here:</span>` + g.paths.map((x, i) =>
-          `<button class="way ${i === curPath ? "on" : ""}" data-w="${i}">Way ${i + 1} &middot; ${plural(x.nodes.length - 1, "call")}</button>`).join("")
-      : "";
-    $("flowSub").textContent = `from ${nm(g.start).full} to ${T.full}`;
+  function renderWays() {
+    const n = curWays.length, more = curWays.capped ? "+" : "";
+    if (n <= 1) { $("ways").innerHTML = ""; return; }
+    if (n <= 6) {
+      $("ways").innerHTML = `<div class="ways"><span class="lbl">There are ${n} ways from here:</span>` + curWays.map((x, i) =>
+        `<button class="way ${i === curPath ? "on" : ""}" data-w="${i}">Way ${i + 1} &middot; ${plural(x.nodes.length - 1, "call")}</button>`).join("") + `</div>`;
+      return;
+    }
+    $("ways").innerHTML = `<div class="waylist"><span class="lbl">There are ${n}${more} ways from here, shortest first. Pick one:</span>` + curWays.map((x, i) => {
+      const mid = x.nodes.slice(1, -1).map(m => nm(m).m).join(" → ") || "direct call";
+      return `<button class="wayrow ${i === curPath ? "on" : ""}" data-w="${i}"><b>Way ${i + 1}</b><span class="route">${esc(mid)}</span><span class="calls">${plural(x.nodes.length - 1, "call")}</span></button>`;
+    }).join("") + `</div>`;
+  }
 
+  function renderStory() {
+    const p = curWays[curPath];
+    if (!p) return;
+    renderWays();
+    $("flowSub").textContent = `from ${nm(p.nodes[0]).full} to ${T.full}`;
     const first = p.nodes[0], t = trigger(first);
-    let html = `<p class="story-intro">Read it from top to bottom. Each step calls the next one, until the code reaches <b>${esc(T.full)}</b>.</p>`;
-    if (p.end === "loop") html += `<div class="endnote" style="margin-left:0;margin-bottom:16px">This way starts inside a loop (methods that call each other), so its real starting point is further up.</div>`;
+    let html = `<p class="story-intro">Read it from top to bottom. Each step leads to the next one, until the code reaches <b>${esc(T.full)}</b>.</p>`;
+    if ((callersOf.get(first.id) || []).length) html += `<div class="endnote" style="margin-left:0;margin-bottom:16px">This way starts inside a loop (methods that call each other).</div>`;
     p.nodes.forEach((n, i) => {
       const role = i === 0 ? "first" : i === p.nodes.length - 1 ? "last" : "mid";
-      const say = i === 0 ? `${t.sentence}:` : role === "last" ? "Finally, the code arrives at your method:" : "Which runs:";
+      const via = i > 0 ? (p.edges[i - 1].kind || "call") : "call";
+      const how = via === "event" ? "When the event is raised, its handler runs" : via === "delegate" ? "When the delegate is invoked, it runs" : "";
+      const say = i === 0 ? `${t.sentence}:` : role === "last" ? (how ? `Finally, ${how.charAt(0).toLowerCase() + how.slice(1)} your method:` : "Finally, the code arrives at your method:") : (how ? how + ":" : "Which runs:");
       html += `<div class="step ${role}"><div class="rail"><div class="num">${i + 1}</div><div class="line"></div></div>
-        <div class="body"><div class="say">${say}</div>${methodBox(n, role)}${p.edges[i] ? hop(n, p.nodes[i + 1], p.edges[i], curGroup + "-" + curPath + "-" + i) : ""}</div></div>`;
+        <div class="body"><div class="say">${say}</div>${methodBox(n, role)}${p.edges[i] ? hop(n, p.nodes[i + 1], p.edges[i], "h" + i) : ""}</div></div>`;
     });
     $("story").innerHTML = html;
   }
 
+  if (starts.length) {
+    const first = visibleStarts().slice().sort((a, b) => a.t.rank - b.t.rank || a.calls - b.calls)[0] || starts[0];
+    cur = first.n.id; curWays = enumerate(cur);
+  }
   renderStarts();
   renderStory();
 
-  const notes = [];
-  if (DATA.truncated) notes.push(`The analysis stopped early (limit: ${DATA.maxDepth} levels / ${DATA.maxNodes} methods), so some ways may be missing.`);
-  if (capped) notes.push(`There are more than ${MAX_PATHS} ways; only the first ${MAX_PATHS} are shown.`);
-  $("notes").innerHTML = notes.map(n => `<div class="note">${esc(n)}</div>`).join("");
+  $("sq").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); renderStarts(); });
+  $("hideTests").addEventListener("change", e => { hideTests = e.target.checked; if (hideTests && groupSel === "Unit tests") groupSel = null; renderStarts(); });
 
-  // ================================================================ details drawer
+  const S = DATA.settings || {}, notes = [];
+  if (DATA.truncated)
+    notes.push(`The analysis stopped early (limit: ${DATA.maxDepth} levels / ${DATA.maxNodes} methods), so some ${FWD ? "calls" : "starting points"} may be missing. ` +
+      `To look further, raise the limits in <b>.editorconfig</b>: <code>callflow.max_methods = ${Math.max(1000, DATA.maxNodes * 2)}</code> <code>callflow.max_depth = ${Math.max(40, DATA.maxDepth * 2)}</code>`);
+  const excluded = DATA.excludedProjects || [];
+  if (excluded.length)
+    notes.push(`${plural(excluded.length, "project")} ${excluded.length === 1 ? "was" : "were"} left out of the search (from <b>.editorconfig</b>): ` +
+      excluded.slice(0, 8).map(x => `<code>${esc(x)}</code>`).join(" ") + (excluded.length > 8 ? " ..." : "") + `. Calls made from ${excluded.length === 1 ? "it" : "them"} are not shown.`);
+  if (DATA.skippedByNamespace)
+    notes.push(`${plural(DATA.skippedByNamespace, "call")} from excluded namespaces (${(S.excludeNamespaces || []).map(x => `<code>${esc(x)}</code>`).join(" ")}) ${DATA.skippedByNamespace === 1 ? "was" : "were"} ignored.`);
+  $(FWD ? "ctNotes" : "notes").innerHTML = notes.map(n => `<div class="note">${n}</div>`).join("");
+
+  // ================================================================ callers tree
+  function treeRows(id, chain) {
+    const list = (callersOf.get(id) || []).slice().sort((a, b) => startsAbove(b.from) - startsAbove(a.from) || nodes.get(a.from).name.localeCompare(nodes.get(b.from).name));
+    return list.map(e => {
+      const c = nodes.get(e.from), p = nm(c), loop = chain.includes(c.id);
+      const kids = (callersOf.get(c.id) || []).length, st = startById.get(c.id), s = e.sites && e.sites[0];
+      const above = startsAbove(c.id);
+      return `<li data-id="${esc(c.id)}"><div class="trow">
+        ${kids && !loop ? `<button class="tgl" data-tgl="1" title="Show who calls this">&#9654;</button>` : `<span class="tgl none"></span>`}
+        <span class="tname" data-node="${esc(c.id)}">${p.cls ? `<span class="cls">${esc(p.cls)}.</span>` : ""}${esc(p.m)}</span>
+        ${st ? `<span class="tbadge start">${esc(st.t.title === "Unit test" || !c.entryDetail ? st.t.title : c.entryDetail)}</span>` : ""}
+        ${e.via ? `<span class="tbadge via">through ${esc(viaName(e.via))}</span>` : ""}
+        ${e.kind === "event" ? `<span class="tbadge ev">raises ${esc(e.detail || "an event")}</span>` : e.kind === "delegate" ? `<span class="tbadge dg">as a delegate</span>` : ""}
+        ${diBad(e) ? `<span class="tbadge bad">DI: ${e.di.status === "other" ? "registered as another class" : "not registered"}</span>` : ""}
+        ${loop ? `<span class="tbadge loop">loop</span>` : ""}
+        <span class="tmeta">${s && s.line ? (e.kind === "event" ? "raises it on line " : e.kind === "delegate" ? "passes it on line " : "calls it on line ") + s.line : ""}${kids && !loop ? `${s && s.line ? " · " : ""}${plural(kids, "caller")}, ${plural(above, "starting point")} behind it` : ""}</span>
+      </div></li>`;
+    }).join("");
+  }
+  function renderTree() {
+    const kids = (callersOf.get(target.id) || []).length;
+    $("tree").innerHTML = `<ul class="tree root"><li data-id="${esc(target.id)}"><div class="trow target"><span class="tgl none"></span>
+      <span class="tname" data-node="${esc(target.id)}">${T.cls ? `<span class="cls">${esc(T.cls)}.</span>` : ""}${esc(T.m)}</span>
+      <span class="tbadge" style="background:var(--pink-soft);color:var(--pink);border:1px solid var(--pink-line)">your method</span>
+      <span class="tmeta">${plural(kids, "direct caller")}</span></div>
+      ${kids ? `<ul class="tree">${treeRows(target.id, [target.id])}</ul>` : ""}</li></ul>`;
+  }
+  const firstLine = e => Math.min(...(e.sites || []).map(x => x.line || 0).concat([1e9]));
+  function calleeRows(id, chain) {
+    const list = (calleesOf.get(id) || []).slice().sort((a, b) => firstLine(a) - firstLine(b));
+    const own = nodes.get(id);
+    let html = list.map(e => {
+      const c = nodes.get(e.to), p = nm(c), loop = chain.includes(c.id), s = e.sites && e.sites[0];
+      const kids = (calleesOf.get(c.id) || []).length, ext = (c.external || []).length;
+      const sameCall = e.via && s ? list.filter(x => x.via === e.via && x.sites[0] && x.sites[0].line === s.line).length : 1;
+      const where = s && s.line ? (e.kind === "event" ? "raises it on line " : e.kind === "delegate" ? "passes it on line " : "line ") + s.line : "";
+      const what = loop ? "" : kids ? `calls ${plural(kids, "method")}` : ext ? "calls only library code" : "calls nothing else";
+      return `<li data-id="${esc(c.id)}"><div class="trow">
+        ${(kids || ext) && !loop ? `<button class="tgl" data-ctgl="1" title="Show what this calls">&#9654;</button>` : `<span class="tgl none"></span>`}
+        <span class="tname" data-node="${esc(c.id)}">${p.cls ? `<span class="cls">${esc(p.cls)}.</span>` : ""}${esc(p.m)}</span>
+        ${e.via ? `<span class="tbadge via">through ${esc(viaName(e.via))}</span>` : ""}
+        ${sameCall > 1 ? `<span class="tbadge impl">1 of ${sameCall} implementations</span>` : ""}
+        ${e.kind === "event" ? `<span class="tbadge ev">handles ${esc(e.detail || "an event")}</span>` : e.kind === "delegate" ? `<span class="tbadge dg">as a delegate${e.detail && e.detail !== "a function pointer" ? " to " + esc(e.detail) : ""}</span>` : ""}
+        ${e.lambda && e.kind === "call" ? `<span class="tbadge dg">inside a callback</span>` : ""}
+        ${diBad(e) ? `<span class="tbadge bad">DI: ${e.di.status === "other" ? "registered as another class" : "not registered"}</span>` : ""}
+        ${loop ? `<span class="tbadge loop">loop</span>` : ""}
+        ${c.cut ? `<span class="tbadge cutb">limit reached</span>` : ""}
+        <span class="tmeta">${[where, what].filter(Boolean).join(" \u00b7 ")}</span>
+      </div></li>`;
+    }).join("");
+    if (own && (own.external || []).length)
+      html += `<li class="ext"><div class="trow"><span class="tgl none"></span><span class="extl">Outside your code: ${own.external.map(esc).join(", ")}</span></div></li>`;
+    return html;
+  }
+  function renderCTree() {
+    const direct = (calleesOf.get(target.id) || []).length;
+    $("ctree").innerHTML = `<ul class="tree root"><li data-id="${esc(target.id)}"><div class="trow target"><span class="tgl none"></span>
+      <span class="tname" data-node="${esc(target.id)}">${T.cls ? `<span class="cls">${esc(T.cls)}.</span>` : ""}${esc(T.m)}</span>
+      <span class="tbadge" style="background:var(--pink-soft);color:var(--pink);border:1px solid var(--pink-line)">the method you picked</span>
+      <span class="tmeta">calls ${plural(direct, "method")} directly</span></div>
+      <ul class="tree">${calleeRows(target.id, [target.id])}</ul></li></ul>`;
+  }
+  function toggleCTree(btn) {
+    const li = btn.closest("li"), sub = li.querySelector(":scope > ul");
+    if (sub) { sub.remove(); btn.innerHTML = "&#9654;"; return; }
+    const chain = [];
+    for (let x = li; x; x = x.parentElement.closest("li")) chain.push(x.dataset.id);
+    li.insertAdjacentHTML("beforeend", `<ul class="tree">${calleeRows(li.dataset.id, chain)}</ul>`);
+    btn.innerHTML = "&#9660;";
+  }
+  $("ctreeCollapse").onclick = renderCTree;
+
+  function toggleTree(btn) {
+    const li = btn.closest("li"), sub = li.querySelector(":scope > ul");
+    if (sub) { sub.remove(); btn.innerHTML = "&#9654;"; return; }
+    const chain = [];
+    for (let x = li; x; x = x.parentElement.closest("li")) chain.push(x.dataset.id);
+    li.insertAdjacentHTML("beforeend", `<ul class="tree">${treeRows(li.dataset.id, chain)}</ul>`);
+    btn.innerHTML = "&#9660;";
+  }
+  $("treeCollapse").onclick = renderTree;
+
+  // ================================================================ details box
   function fullCode(n, callees) {
     if (!n.source || !n.source.length) return "";
     const lines = n.source.map(l => l.replace(/\t/g, "    "));
@@ -465,12 +847,15 @@ const MAX_PATHS = 300;
     if (!n) return;
     const p = nm(n);
     const callers = callersOf.get(id) || [], callees = calleesOf.get(id) || [];
-    const kind = id === target.id ? "target" : !callers.length ? "start" : "";
-    const roleText = kind === "target" ? "YOUR METHOD" : kind === "start" ? "WHERE THE FLOW STARTS" : "METHOD IN BETWEEN";
+    const kind = id === target.id ? "target" : isStart(id) ? "start" : "";
+    const roleText = FWD ? (kind === "target" ? "THE METHOD YOU PICKED" : "CALLED METHOD")
+                         : kind === "target" ? "YOUR METHOD" : kind === "start" ? "WHERE THE FLOW STARTS" : "METHOD IN BETWEEN";
     $("drHead").innerHTML = `<h3><span class="role ${kind}">${roleText}</span><span class="cls">${esc(p.cls)}</span>${esc(p.m)}</h3><button class="btn sq x" id="drClose" title="Close (Esc)">&times;</button>`;
     const item = (e, other) => {
       const s = e.sites && e.sites[0];
-      return `<li data-node="${esc(other.id)}"><b>${esc(nm(other).full)}</b>${e.via ? ` <span style="color:var(--blue);font-size:12.5px">(through ${esc(viaName(e.via))})</span>` : ""}
+      const how = e.kind === "event" ? ` <span class="tbadge ev">event</span>` : e.kind === "delegate" ? ` <span class="tbadge dg">delegate</span>` : "";
+      return `<li data-node="${esc(other.id)}"><b>${esc(nm(other).full)}</b>${e.via ? ` <span style="color:var(--blue);font-size:12.5px">(through ${esc(viaName(e.via))})</span>` : ""}${how}
+        ${diBad(e) ? ` <span class="tbadge bad">DI: ${e.di.status === "other" ? "registered as another class" : "not registered"}</span>` : ""}
         ${s ? `<div class="cs mono">line ${s.line}: ${esc(s.code)}</div>` : ""}</li>`;
     };
     const rows = [];
@@ -484,17 +869,25 @@ const MAX_PATHS = 300;
     if (n.parameters.length) rows.push(["Parameters", n.parameters.map(x => `<span class="mono">${esc(x.type)} ${esc(x.name)}</span>`).join("<br>")]);
     if (n.attributes.length) rows.push(["Attributes", n.attributes.map(a => `<span class="mono">[${esc(a)}]</span>`).join(" ")]);
     if (n.source && n.source.length) rows.push(["Length", plural(n.source.length, "line") + (n.sourceTruncated ? "+" : "")]);
-    const ways = paths.filter(x => x.nodes.includes(n)).length;
-    if (paths.length) rows.push(["Used in", `${ways} of ${plural(paths.length, "way")} to reach your method`]);
+    if (dist.has(id) && id !== target.id) rows.push(["Distance", FWD ? `${plural(dist.get(id), "call")} deep from the method you picked` : `${plural(dist.get(id), "call")} away from your method`]);
+    if ((n.external || []).length) rows.push(["Outside your code", n.external.map(x => `<span class="mono">${esc(x)}</span>`).join("<br>")]);
+    if (starts.length) rows.push(["Reached from", `${startsAbove(id)} of ${plural(starts.length, "starting point")}`]);
     const t = n.entryKind || n.cut ? trigger(n) : null;
+    const LIST = 40;
+    const list = (arr, other) => `<ul class="plist">${arr.slice(0, LIST).map(e => item(e, nodes.get(other(e)))).join("")}</ul>` +
+      (arr.length > LIST ? `<div class="code-note">...and ${arr.length - LIST} more. Use the Callers tree tab to see all of them.</div>` : "");
 
     $("drBody").innerHTML =
       (n.summary ? `<h4>What it does</h4><p>${esc(n.summary)}</p>` : "") +
-      (t && !callers.length ? `<h4>Why the flow starts here</h4><p>${t.sentence.replace(/[:]$/, "")} this method.</p>` : "") +
+      (t && kind === "start" ? `<h4>Why the flow starts here</h4><p>${t.sentence.replace(/[:]$/, "")} this method.</p>` : "") +
       (fullCode(n, callees) || (n.signature ? `<h4>Signature</h4><pre>${esc(n.signature)}</pre>` : "")) +
       `<h4>Details</h4><dl class="kv">${rows.map(r => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("")}</dl>` +
-      `<div class="dr-cols"><div><h4>Who calls it (${callers.length})</h4>` + (callers.length ? `<ul class="plist">${callers.map(e => item(e, nodes.get(e.from))).join("")}</ul>` : "<p>Nothing in this solution.</p>") + `</div>` +
-      `<div>` + (id !== target.id ? `<h4>What it calls next (${callees.length})</h4><ul class="plist">${callees.map(e => item(e, nodes.get(e.to))).join("")}</ul>` : "") + `</div></div>`;
+      ((n.subscriptions || []).length ? `<h4>Subscribed to events (${n.subscriptions.length})</h4><ul class="plist">` + n.subscriptions.map(x =>
+        `<li><b>${esc(x.event)}</b> in ${esc(x.by)}<div class="cs mono">${esc(x.file || "")}:${x.line} ${esc(x.code || "")}</div></li>`).join("") + `</ul>` : "") +
+      ((n.diRegs || []).length ? `<h4>Registered in DI</h4><ul class="plist">` + n.diRegs.map(r =>
+        `<li>as <b>${esc(r.service)}</b> (${esc(r.lifetime)})<div class="cs mono">${esc(r.file || "")}:${r.line} &middot; ${esc(r.method || "")}</div></li>`).join("") + `</ul>` : "") +
+      `<div class="dr-cols"><div><h4>Who calls it (${callers.length})</h4>` + (callers.length ? list(callers, e => e.from) : "<p>Nothing in this solution.</p>") + `</div>` +
+      `<div>` + (id !== target.id ? `<h4>What it calls next (${callees.length})</h4>` + list(callees, e => e.to) : "") + `</div></div>`;
     $("drClose").onclick = closeDrawer;
     $("drawer").classList.add("open"); $("scrim").classList.add("open"); $("drawer").setAttribute("aria-hidden", "false");
     $("drBody").scrollTop = 0;
@@ -505,10 +898,18 @@ const MAX_PATHS = 300;
 
   // ================================================================ clicks
   document.addEventListener("click", e => {
-    const st = e.target.closest(".start");
-    if (st) { curGroup = +st.dataset.g; curPath = 0; renderStarts(); renderStory(); $("flowBlock").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
-    const w = e.target.closest(".way");
+    const st = e.target.closest("[data-start]");
+    if (st) { selectStart(st.dataset.start, true); return; }
+    const chip = e.target.closest("[data-chip]");
+    if (chip) { groupSel = chip.dataset.chip || null; renderStarts(); return; }
+    const sa = e.target.closest("[data-showall]");
+    if (sa) { showAll.add(sa.dataset.showall); renderStarts(); return; }
+    const w = e.target.closest("[data-w]");
     if (w) { curPath = +w.dataset.w; renderStory(); return; }
+    const ctg = e.target.closest("[data-ctgl]");
+    if (ctg) { toggleCTree(ctg); return; }
+    const tg = e.target.closest("[data-tgl]");
+    if (tg) { toggleTree(tg); return; }
     const c = e.target.closest("[data-code]");
     if (c) { const box = $("code-" + c.dataset.code); box.classList.toggle("hidden"); c.textContent = box.classList.contains("hidden") ? "Show code" : "Hide code"; return; }
     const fc = e.target.closest("[data-full]");
@@ -519,58 +920,129 @@ const MAX_PATHS = 300;
   });
 
   // ================================================================ tabs
-  let drawn = false;
+  let drawn = false, treeDone = false, ctreeDone = false;
   document.querySelectorAll(".tab").forEach(t => t.onclick = () => {
     document.querySelectorAll(".tab").forEach(x => x.classList.toggle("on", x === t));
-    const pic = t.dataset.view === "picture";
-    $("v-story").classList.toggle("hidden", pic);
-    $("v-picture").classList.toggle("hidden", !pic);
-    if (pic && !drawn) { drawn = true; drawDiagram(); } else if (pic && pendingFit) fit();
+    const v = t.dataset.view;
+    ["story", "tree", "ctree", "picture"].forEach(x => $("v-" + x).classList.toggle("hidden", x !== v));
+    if (v === "tree" && !treeDone) { treeDone = true; renderTree(); }
+    if (v === "ctree" && !ctreeDone) { ctreeDone = true; renderCTree(); }
+    if (v === "picture" && !drawn) { drawn = true; initDiagram(); } else if (v === "picture" && pendingFit) fit();
   });
 
   // ================================================================ big picture
   const SVGNS = "http://www.w3.org/2000/svg";
-  let vb = null, bounds = null, pendingFit = false, dragMoved = false;
+  const BUNDLE_STARTS = 12;    // more starting points than this: bundle them by kind in the diagram
+  const BOX_LIMIT = 70;        // more boxes than this is not readable: reduce automatically
+  let vb = null, bounds = null, pendingFit = false, dragMoved = false, lastView = null;
+  const dg = { depth: Infinity, byClass: false, open: new Set() };
+  let nodeEls = new Map(), edgeEls = [], vIn = new Map(), vOut = new Map();
+
+  // The "view": which boxes are drawn. A box is one method, or a whole class when grouping is on.
+  function buildView() {
+    const vis = id => dist.has(id) && dist.get(id) <= dg.depth;
+    const size = new Map();
+    for (const n of nodes.values()) if (vis(n.id) && n.id !== target.id) size.set(clsKey(n), (size.get(clsKey(n)) || 0) + 1);
+    const bundle = dg.byClass && starts.length > BUNDLE_STARTS;   // many starts: one box per kind of start
+    const vid = id => {
+      if (id === target.id || !dg.byClass) return id;
+      const st = startById.get(id);
+      if (bundle && st && !dg.open.has("grp:" + st.t.group)) return "grp:" + st.t.group;
+      const c = clsKey(nodes.get(id));
+      return dg.open.has(c) || size.get(c) < 2 ? id : "cls:" + c;
+    };
+    const vn = new Map(), ve = new Map();
+    let methods = 0;
+    for (const n of nodes.values()) {
+      if (!vis(n.id)) continue;
+      methods++;
+      const k = vid(n.id);
+      let v = vn.get(k);
+      if (!v) { v = { id: k, members: [], hidden: 0, isClass: k !== n.id, isGroup: k.startsWith("grp:") && k !== n.id }; vn.set(k, v); }
+      v.members.push(n);
+      v.hidden += FWD ? (calleesOf.get(n.id) || []).filter(e => !vis(e.to)).length
+                      : (callersOf.get(n.id) || []).filter(e => !vis(e.from)).length;
+    }
+    for (const e of edges) {
+      if (!vis(e.from) || !vis(e.to)) continue;
+      const a = vid(e.from), b = vid(e.to);
+      if (a === b) continue;
+      const k = a + "\u0001" + b;
+      let x = ve.get(k);
+      if (!x) { x = { from: a, to: b, list: [] }; ve.set(k, x); }
+      x.list.push(e);
+    }
+    return { vn, ve: [...ve.values()], methods };
+  }
+
+  function initDiagram() {
+    const sel = $("dgDepth");
+    let opts = "";
+    for (let d = 1; d < maxDist; d++) opts += `<option value="${d}">${plural(d, "call")} ${FWD ? "deep" : "back"}</option>`;
+    sel.innerHTML = opts + `<option value="all">${FWD ? "All levels" : "All the way to the starts"}</option>`;
+    // Pick a readable default for big graphs: group by class first, then look less far back.
+    if (nodes.size > 40) dg.byClass = true;
+    if (maxDist > 2 && buildView().vn.size > BOX_LIMIT) {
+      let d = maxDist - 1;
+      for (; d > 1; d--) { dg.depth = d; if (buildView().vn.size <= BOX_LIMIT) break; }
+      dg.depth = Math.max(1, d);
+    }
+    sel.value = isFinite(dg.depth) ? String(dg.depth) : "all";
+    $("dgByClass").checked = dg.byClass;
+    sel.onchange = () => { dg.depth = sel.value === "all" ? Infinity : +sel.value; drawDiagram(); };
+    $("dgByClass").onchange = e => { dg.byClass = e.target.checked; dg.open.clear(); drawDiagram(); };
+    $("dgClear").onclick = clearFocus;
+    $("dg").addEventListener("click", () => { if (!dragMoved) clearFocus(); });
+    drawDiagram();
+  }
 
   function drawDiagram() {
     const svg = $("dg");
-    // Break loops: DFS from the target over callers; an edge back to a node on the stack is a "loop" edge.
-    const state = new Map(), back = new Set(), order = [];
+    const { vn, ve, methods } = buildView();
+    $("dgInfo").textContent = `Showing ${plural(vn.size, "box", "boxes")} for ${methods} of ${plural(nodes.size, "method")}` + (vn.size > 150 ? " (large: group by class or look less far back)" : "");
+    vIn = new Map(); vOut = new Map();
+    for (const e of ve) {
+      (vIn.get(e.to) || vIn.set(e.to, []).get(e.to)).push(e);
+      (vOut.get(e.from) || vOut.set(e.from, []).get(e.from)).push(e);
+    }
+
+    // Break loops: an arrow back to a box that is already on the current chain is drawn as a loop arrow.
+    const state = new Map(), vback = new Set(), order = [];
     (function dfs(id) {
       state.set(id, 1); order.push(id);
-      for (const e of callersOf.get(id) || []) { const s = state.get(e.from); if (s === 1) back.add(e); else if (!s) dfs(e.from); }
+      if (FWD) { for (const e of vOut.get(id) || []) { const s = state.get(e.to); if (s === 1) vback.add(e); else if (!s) dfs(e.to); } }
+      else { for (const e of vIn.get(id) || []) { const s = state.get(e.from); if (s === 1) vback.add(e); else if (!s) dfs(e.from); } }
       state.set(id, 2);
     })(target.id);
-    for (const id of nodes.keys()) if (!state.has(id)) order.push(id);
+    for (const id of vn.keys()) if (!state.has(id)) order.push(id);
 
-    // Column = longest distance from a starting point, so every start sits in the first column
-    // and the target sits in the last one.
+    // Column = longest chain of callers behind a box, so the farthest callers sit in the first
+    // column and the target in the last one.
     const col = new Map();
     const colOf = (id, guard) => {
       if (col.has(id)) return col.get(id);
       if (guard.has(id)) return 0;
       guard.add(id);
       let best = 0;
-      for (const e of callersOf.get(id) || []) if (!back.has(e)) best = Math.max(best, colOf(e.from, guard) + 1);
+      for (const e of vIn.get(id) || []) if (!vback.has(e)) best = Math.max(best, colOf(e.from, guard) + 1);
       guard.delete(id); col.set(id, best); return best;
     };
     order.forEach(id => colOf(id, new Set()));
     const last = Math.max(0, ...col.values());
-    col.set(target.id, last);
+    if (!FWD) col.set(target.id, last);   // callee reports: the method you picked is already in column 0
     const cols = Array.from({ length: last + 1 }, () => []);
     order.forEach(id => cols[col.get(id)].push(id));
 
-    // Long arrows (spanning several columns) get invisible "waypoints" in the columns they cross,
-    // so they are routed through the gaps instead of passing behind other boxes.
+    // Long arrows get invisible waypoints in the columns they cross, so they go around boxes.
     const nbrs = new Map();
     const link = (a, b) => { (nbrs.get(a) || nbrs.set(a, []).get(a)).push(b); (nbrs.get(b) || nbrs.set(b, []).get(b)).push(a); };
-    const waypoints = new Map(); // edge -> [dummy ids]
-    edges.forEach((e, i) => {
+    const waypoints = new Map(), wpSeen = new Set();
+    ve.forEach((e, i) => {
       const c1 = col.get(e.from), c2 = col.get(e.to);
-      if (back.has(e) || c2 <= c1) return;
+      if (vback.has(e) || c2 <= c1) return;
       let prev = e.from;
       const list = [];
-      for (let c = c1 + 1; c < c2; c++) { const d = "~" + i + "~" + c; cols[c].push(d); list.push(d); link(prev, d); prev = d; }
+      for (let c = c1 + 1; c < c2; c++) { const d = "~" + e.to + "~" + c; if (!wpSeen.has(d)) { wpSeen.add(d); cols[c].push(d); } list.push(d); link(prev, d); prev = d; }
       link(prev, e.to);
       waypoints.set(e, list);
     });
@@ -587,11 +1059,17 @@ const MAX_PATHS = 300;
       reindex();
     }
 
+    const label = v => {
+      if (v.isGroup) return { top: "", main: v.members.length + " " + lc(v.id.slice(4)) };
+      if (v.isClass) { const full = v.id.slice(4), short = full.slice(full.lastIndexOf(".") + 1); return { top: full.includes(".") ? full.slice(0, full.lastIndexOf(".")) : "", main: short }; }
+      const p = nm(v.members[0]); return { top: p.cls, main: p.m };
+    };
     const H = 62, GAP_Y = 30, GAP_X = 120, CH = 7.6, DUMMY_H = 8;
     const isDummy = id => id[0] === "~";
     const hOf = id => isDummy(id) ? DUMMY_H : H;
-    const width = cols.map(c => Math.min(320, Math.max(180, ...c.filter(id => !isDummy(id)).map(id => { const p = nm(nodes.get(id)); return Math.max(p.cls.length * 6.6, p.m.length * CH) + 32; }))));
-    const colH = cols.map(c => c.reduce((s, id) => s + hOf(id) + GAP_Y, 0));
+    const width = cols.map(c => Math.min(320, Math.max(180, ...c.filter(id => !isDummy(id)).map(id => { const l = label(vn.get(id)); return Math.max(l.top.length * 6.6, l.main.length * CH, vn.get(id).isGroup ? 250 : 0) + 32; }))));
+    const gapOf = id => isDummy(id) ? 8 : GAP_Y;
+    const colH = cols.map(c => c.reduce((s, id) => s + hOf(id) + gapOf(id), 0));
     const totalH = Math.max(...colH);
     const xy = new Map();
     let x = 0;
@@ -599,101 +1077,143 @@ const MAX_PATHS = 300;
     cols.forEach((c, ci) => {
       colX.push(x);
       let y = (totalH - colH[ci]) / 2 + 40;
-      c.forEach(id => { xy.set(id, { x, y, w: width[ci], h: hOf(id) }); y += hOf(id) + GAP_Y; });
+      c.forEach(id => { xy.set(id, { x, y, w: width[ci], h: hOf(id) }); y += hOf(id) + gapOf(id); });
       x += width[ci] + GAP_X;
     });
     bounds = { x: -30, y: 0, w: x - GAP_X + 60, h: totalH + 70 };
+    const tp = xy.get(target.id);
+    bounds.ty = tp.y + H / 2;
 
     const el = (tag, a, parent) => { const n = document.createElementNS(SVGNS, tag); for (const k in a) n.setAttribute(k, a[k]); if (parent) parent.appendChild(n); return n; };
     svg.innerHTML = "";
+    svg.classList.remove("focus");
+    $("dgClear").classList.add("invisible");
     const defs = el("defs", {}, svg);
     [["ar", "var(--faint)"], ["ar-loop", "var(--amber)"], ["ar-on", "var(--blue)"]].forEach(([id, color]) => {
       const m = el("marker", { id, viewBox: "0 0 10 10", refX: "9", refY: "5", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" }, defs);
       el("path", { d: "M0,0 L10,5 L0,10 z", fill: color }, m);
     });
 
-    // column headers
-    const heads = cols.map((c, i) => i === 0 ? "STARTS HERE" : i === last ? "YOUR METHOD" : "STEP " + i);
-    cols.forEach((c, i) => { if (c.length) el("text", { class: "col-h", x: colX[i] + width[i] / 2, y: 14, "text-anchor": "middle" }, svg).textContent = heads[i]; });
+    const limited = isFinite(dg.depth) && dg.depth < maxDist;
+    cols.forEach((c, i) => {
+      if (!c.some(id => !isDummy(id))) return;
+      const h = FWD ? (i === 0 ? "THE METHOD YOU PICKED" : i === 1 ? "CALLS DIRECTLY" : i + " CALLS DEEP")
+              : i === last ? "YOUR METHOD" : i === 0 && !limited ? "STARTS HERE" : last - i === 1 ? "CALLS IT DIRECTLY" : (last - i) + " CALLS BACK";
+      el("text", { class: "col-h", x: colX[i] + width[i] / 2, y: 14, "text-anchor": "middle" }, svg).textContent = h;
+    });
 
     const gE = el("g", {}, svg), gN = el("g", {}, svg);
-    const edgeEls = [];
-    for (const e of edges) {
+    edgeEls = [];
+    for (const e of ve) {
       const a = xy.get(e.from), b = xy.get(e.to);
       if (!a || !b) continue;
-      let d, loop = back.has(e) || b.x <= a.x;
+      let d;
+      const loop = vback.has(e) || b.x <= a.x;
       if (loop) {
         const x1 = a.x + a.w / 2, y1 = a.y + H, x2 = b.x + b.w / 2, y2 = b.y + H, dip = 55 + Math.abs(x1 - x2) * 0.15;
         d = `M${x1},${y1} C${x1},${y1 + dip} ${x2},${y2 + dip} ${x2},${y2 + 2}`;
       } else {
-        // points: right side of caller -> through each waypoint column -> left side of callee
         const pts = [[a.x + a.w, a.y + H / 2]];
         for (const w of waypoints.get(e) || []) { const p = xy.get(w); pts.push([p.x, p.y + DUMMY_H / 2], [p.x + p.w, p.y + DUMMY_H / 2]); }
         pts.push([b.x - 2, b.y + H / 2]);
         d = `M${pts[0][0]},${pts[0][1]}`;
         for (let k = 1; k < pts.length; k++) {
           const [px, py] = pts[k - 1], [qx, qy] = pts[k];
-          if (k % 2 === 0) { d += ` L${qx},${qy}`; continue; }           // straight across a waypoint column
+          if (k % 2 === 0) { d += ` L${qx},${qy}`; continue; }
           const dx = Math.max(40, (qx - px) / 2);
           d += ` C${px + dx},${py} ${qx - dx},${qy} ${qx},${qy}`;
         }
       }
-      const path = el("path", { d, class: "edge" + (loop ? " back" : ""), "marker-end": `url(#${loop ? "ar-loop" : "ar"})` }, gE);
+      const indirect = e.list.every(x => x.kind === "event" || x.kind === "delegate");
+      const bad = e.list.some(diBad);
+      const path = el("path", { d, class: "edge" + (loop ? " back" : "") + (indirect ? " indirect" : "") + (bad ? " dibad" : ""), "marker-end": `url(#${loop ? "ar-loop" : "ar"})` }, gE);
       const hit = el("path", { d, class: "hit" }, gE);
-      hit.addEventListener("mousemove", ev => tip(ev, e));
-      hit.addEventListener("mouseleave", () => $("dgTip").classList.add("hidden"));
+      hit.addEventListener("mousemove", ev => tip(ev, e, vn));
+      hit.addEventListener("mouseleave", () => { $("dgTip").classList.add("hidden"); });
       edgeEls.push({ e, path, loop });
     }
 
-    const nodeEls = new Map();
+    lastView = { nodes: [], edges: [] };
+    for (const { e, loop } of edgeEls) lastView.edges.push({ from: e.from, to: e.to, list: e.list, loop });
+    nodeEls = new Map();
+    const clip = (s, w, c) => { const m = Math.floor((w - 28) / c); return s.length > m ? s.slice(0, m - 1) + "…" : s; };
     for (const [id, p] of xy) {
       if (isDummy(id)) continue;
-      const n = nodes.get(id), q = nm(n);
-      const kind = id === target.id ? "target" : n.cut ? "cut" : !(callersOf.get(id) || []).length ? "start" : "";
-      const g = el("g", { class: "node " + kind, transform: `translate(${p.x},${p.y})` }, gN);
-      el("title", {}, g).textContent = n.name + (n.file ? "\n" + loc(n) : "") + "\nClick: show only the flows through this method\nDouble-click: open its code and details";
+      const v = vn.get(id), l = label(v), first = v.members[0];
+      const noCallers = !(vIn.get(id) || []).length;
+      const kind = id === target.id ? "target" : !v.isClass && first.cut ? "cut"
+                 : FWD ? (v.hidden ? "more" : "")
+                 : noCallers && v.hidden ? "more" : noCallers ? "start" : "";
+      const g = el("g", { class: "node " + kind + (v.isClass ? " cls" : ""), transform: `translate(${p.x},${p.y})` }, gN);
+      const classes = v.isGroup ? new Set(v.members.map(clsKey)).size : 0;
+      el("title", {}, g).textContent = v.isGroup
+        ? v.members.length + " " + lc(v.id.slice(4)) + " in " + plural(classes, "class", "classes") + "\nClick: show only the flows that start here\nDouble-click: open this group"
+        : v.isClass
+        ? v.id.slice(4) + "\n" + v.members.map(m => "  " + nm(m).m).slice(0, 15).join("\n") + (v.members.length > 15 ? "\n  ..." : "") + "\nClick: show only the flows through this class\nDouble-click: open it into its methods"
+        : first.name + (first.file ? "\n" + loc(first) : "") + "\nClick: show only the flows through this method\nDouble-click: open its code and details";
+      if (v.isClass) el("rect", { class: "shadow", x: 5, y: 5, width: p.w, height: H, rx: 12 }, g);
       el("rect", { width: p.w, height: H, rx: 12 }, g);
-      const clip = (s, w, c) => { const m = Math.floor((w - 28) / c); return s.length > m ? s.slice(0, m - 1) + "…" : s; };
-      const h = kind === "start" ? trigger(n).title : kind === "target" ? "" : kind === "cut" ? "LIMIT" : "";
-      if (h) el("text", { class: "h", x: 14, y: 17 }, g).textContent = clip(h.toUpperCase(), p.w, 6.8);
-      el("text", { class: "c", x: 14, y: h ? 33 : 26 }, g).textContent = clip(q.cls, p.w, 6.4);
-      el("text", { class: "m", x: 14, y: h ? 52 : 46 }, g).textContent = clip(q.m, p.w, CH);
+      lastView.nodes.push({ id, top: v.isGroup ? "" : v.isClass ? l.top : l.top, main: l.main + (v.isClass && !v.isGroup ? " (" + plural(v.members.length, "method") + ")" : ""), kind });
+      const head = kind === "start" ? (v.isGroup ? "STARTS HERE" : v.isClass ? "STARTS HERE" : trigger(first).title.toUpperCase()) : kind === "cut" ? "LIMIT" : "";
+      if (head) el("text", { class: "h", x: 14, y: 17 }, g).textContent = clip(head, p.w, 6.8);
+      if (v.hidden) el("text", { class: "more-t", x: head ? p.w - 12 : 14, y: 17, "text-anchor": head ? "end" : "start" }, g).textContent = `+${v.hidden} more ${FWD ? "call" : "caller"}${v.hidden === 1 ? "" : "s"}`;
+      const up = head || v.hidden;
+      if (v.isClass) {
+        el("text", { class: "m", x: 14, y: up ? 37 : 28 }, g).textContent = clip(l.main, p.w, CH);
+        el("text", { class: "c", x: 14, y: up ? 53 : 47 }, g).textContent = v.isGroup ? "in " + plural(classes, "class", "classes") + " \u00b7 double-click to open" : plural(v.members.length, "method");
+      } else {
+        el("text", { class: "c", x: 14, y: up ? 33 : 26 }, g).textContent = clip(l.top, p.w, 6.4);
+        el("text", { class: "m", x: 14, y: up ? 52 : 46 }, g).textContent = clip(l.main, p.w, CH);
+      }
       g.addEventListener("click", ev => { if (dragMoved) return; ev.stopPropagation(); focus(id); });
-      g.addEventListener("dblclick", ev => { ev.stopPropagation(); openDrawer(id); });
+      g.addEventListener("dblclick", ev => {
+        ev.stopPropagation();
+        if (v.isGroup) { dg.open.add(v.id); drawDiagram(); } else if (v.isClass) { dg.open.add(v.id.slice(4)); drawDiagram(); } else openDrawer(id);
+      });
       nodeEls.set(id, g);
     }
-
-    function focus(id) {
-      const keep = new Set([id]);
-      const walk = (start, next) => { const st = [start]; while (st.length) { const c = st.pop(); for (const o of next(c)) if (!keep.has(o)) { keep.add(o); st.push(o); } } };
-      walk(id, c => (callersOf.get(c) || []).map(e => e.from));
-      walk(id, c => (calleesOf.get(c) || []).map(e => e.to));
-      svg.classList.add("focus");
-      nodeEls.forEach((g, nid) => { g.classList.toggle("on", keep.has(nid)); g.classList.toggle("sel", nid === id); });
-      edgeEls.forEach(({ e, path, loop }) => {
-        const on = keep.has(e.from) && keep.has(e.to);
-        path.classList.toggle("on", on);
-        path.setAttribute("marker-end", `url(#${on ? "ar-on" : loop ? "ar-loop" : "ar"})`);
-      });
-      $("dgClear").classList.remove("hidden");
-    }
-    function clear() {
-      svg.classList.remove("focus");
-      nodeEls.forEach(g => g.classList.remove("on", "sel"));
-      edgeEls.forEach(({ path, loop }) => { path.classList.remove("on"); path.setAttribute("marker-end", `url(#${loop ? "ar-loop" : "ar"})`); });
-      $("dgClear").classList.add("hidden");
-    }
-    $("dgClear").onclick = clear;
-    svg.addEventListener("click", () => { if (!dragMoved) clear(); });
     fit();
   }
 
+  function focus(id) {
+    const keep = new Set([id]);
+    const walk = next => { const st = [id]; while (st.length) { const c = st.pop(); for (const o of next(c)) if (!keep.has(o)) { keep.add(o); st.push(o); } } };
+    walk(c => (vIn.get(c) || []).map(e => e.from));
+    walk(c => (vOut.get(c) || []).map(e => e.to));
+    $("dg").classList.add("focus");
+    nodeEls.forEach((g, nid) => { g.classList.toggle("on", keep.has(nid)); g.classList.toggle("sel", nid === id); });
+    edgeEls.forEach(({ e, path, loop }) => {
+      const on = keep.has(e.from) && keep.has(e.to);
+      path.classList.toggle("on", on);
+      path.setAttribute("marker-end", `url(#${on ? "ar-on" : loop ? "ar-loop" : "ar"})`);
+    });
+    $("dgClear").classList.remove("invisible");
+  }
+  function clearFocus() {
+    $("dg").classList.remove("focus");
+    nodeEls.forEach(g => g.classList.remove("on", "sel"));
+    edgeEls.forEach(({ path, loop }) => { path.classList.remove("on"); path.setAttribute("marker-end", `url(#${loop ? "ar-loop" : "ar"})`); });
+    $("dgClear").classList.add("invisible");
+  }
+
   let tipEdge = null;
-  function tip(ev, e) {
-    const t = $("dgTip"), r = $("dgWrap").getBoundingClientRect(), s = e.sites && e.sites[0];
-    if (tipEdge !== e) { tipEdge = e; t.innerHTML = `<b>${esc(nm(nodes.get(e.from)).m)}</b> calls <b>${esc(nm(nodes.get(e.to)).m)}</b>` +
-      (e.via ? `<br>through ${esc(viaName(e.via))}` : "") + (e.lambda ? "<br>inside a callback" : "") +
-      (s ? `<br>line ${s.line}: <code>${esc(s.code)}</code>` : ""); }
+  function tip(ev, ve, vn) {
+    const t = $("dgTip"), r = $("dgWrap").getBoundingClientRect();
+    if (tipEdge !== ve) {
+      tipEdge = ve;
+      if (ve.list.length === 1) {
+        const e = ve.list[0], s = e.sites && e.sites[0];
+        const fm = esc(nm(nodes.get(e.from)).m), tm = esc(nm(nodes.get(e.to)).m);
+        const verb = e.kind === "event" ? `raises <b>${esc(e.detail || "an event")}</b>, which runs <b>${tm}</b>`
+                   : e.kind === "delegate" ? `passes <b>${tm}</b> ${e.detail ? "to " + esc(e.detail) : "as a delegate"}` : `calls <b>${tm}</b>`;
+        t.innerHTML = `<b>${fm}</b> ${verb}` +
+          (e.via ? `<br>through ${esc(viaName(e.via))}` : "") + (e.lambda && e.kind === "call" ? "<br>inside a callback" : "") +
+          (diBad(e) ? `<br>&#9888; DI registers ${e.di.status === "other" ? esc(e.di.regs.map(r => r.impl || "a factory").join(", ")) : "nothing"} for ${esc(e.di.service)}` : "") +
+          (s ? `<br>line ${s.line}: <code>${esc(s.code)}</code>` : "");
+      } else {
+        t.innerHTML = `<b>${ve.list.length} calls</b> between these boxes:<br>` + ve.list.slice(0, 6).map(e => `${esc(nm(nodes.get(e.from)).m)} &rarr; ${esc(nm(nodes.get(e.to)).m)}`).join("<br>") + (ve.list.length > 6 ? "<br>..." : "");
+      }
+    }
     t.classList.remove("hidden");
     t.style.left = Math.min(ev.clientX - r.left + 14, r.width - t.offsetWidth - 8) + "px";
     t.style.top = (ev.clientY - r.top + 14) + "px";
@@ -701,7 +1221,9 @@ const MAX_PATHS = 300;
 
   const wrap = $("dgWrap");
   function setVB() { $("dg").setAttribute("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`); }
-  function fit() {
+  // fit(false): show everything if it stays readable, otherwise a readable zoom centred on your method.
+  // fit(true): always show everything (the "Fit to screen" button).
+  function fit(all) {
     if (!bounds) return;
     if (!wrap.clientWidth || !wrap.clientHeight) { pendingFit = true; return; }
     pendingFit = false;
@@ -710,7 +1232,19 @@ const MAX_PATHS = 300;
     if (w / h > ar) h = w / ar; else w = h * ar;
     const minW = wrap.clientWidth;   // small graphs: don't blow them up past 100%
     if (w < minW) { h *= minW / w; w = minW; }
-    vb = { x: bounds.x - (w - bounds.w) / 2, y: bounds.y - (h - bounds.h) / 2, w, h };
+    const maxW = wrap.clientWidth * 1.5;
+    if (!all && w > maxW) {
+      w = maxW; h = w / ar;
+      // Zoomed in: keep the method you picked in view (right side for callers, left side for callees).
+      const x = bounds.w > w ? (FWD ? bounds.x : bounds.x + bounds.w - w) : bounds.x - (w - bounds.w) / 2;
+      let y = bounds.ty - h / 2;
+      y = Math.max(bounds.y, Math.min(y, bounds.y + bounds.h - h));
+      vb = { x, y, w, h };
+      $("dgZoomNote").classList.remove("hidden");
+    } else {
+      vb = { x: bounds.x - (w - bounds.w) / 2, y: bounds.y - (h - bounds.h) / 2, w, h };
+      $("dgZoomNote").classList.add("hidden");
+    }
     setVB();
   }
   function zoom(f, cx, cy) {
@@ -721,7 +1255,7 @@ const MAX_PATHS = 300;
   }
   $("dgIn").onclick = () => zoom(0.8);
   $("dgOut").onclick = () => zoom(1.25);
-  $("dgFit").onclick = () => fit();
+  $("dgFit").onclick = () => fit(true);
   let drag = null;
   wrap.addEventListener("pointerdown", e => { if (e.button === 0 && vb) { drag = { x: e.clientX, y: e.clientY, vb: { ...vb } }; dragMoved = false; } });
   window.addEventListener("pointermove", e => {
@@ -739,10 +1273,129 @@ const MAX_PATHS = 300;
     const r = wrap.getBoundingClientRect();
     zoom(e.deltaY > 0 ? 1.12 : 0.89, vb.x + (e.clientX - r.left) / r.width * vb.w, vb.y + (e.clientY - r.top) / r.height * vb.h);
   }, { passive: false });
-  window.addEventListener("resize", () => { if (bounds) fit(); });
+  window.addEventListener("resize", () => { if (bounds && !$("v-picture").classList.contains("hidden")) fit(); });
+
+  // ================================================================ export
+  const mq = s => String(s ?? "").replace(/"/g, "#quot;").replace(/</g, "#lt;").replace(/>/g, "#gt;");
+  function edgeLabel(list) {
+    const e = list[0];
+    if (list.some(diBad)) return "DI: another class";
+    if (e.kind === "event") return "event " + (e.detail || "");
+    if (e.kind === "delegate") return "delegate" + (e.detail && e.detail !== "a function pointer" ? " to " + e.detail : "");
+    if (e.via) return viaName(e.via);
+    return list.length > 1 ? list.length + " calls" : "";
+  }
+  /** Mermaid flowchart, fenced so it renders when pasted into GitHub / Azure DevOps / GitLab markdown. */
+  function toMermaid(vnodes, vedges) {
+    const ids = new Map(), lines = ["```mermaid", "flowchart LR", "  %% Generated by CallFlowViewer"];
+    vnodes.forEach((v, i) => {
+      ids.set(v.id, "n" + i);
+      lines.push(`  n${i}["${v.top ? mq(v.top) + "<br/>" : ""}${mq(v.main)}"]`);
+    });
+    for (const e of vedges) {
+      const a = ids.get(e.from), b = ids.get(e.to);
+      if (!a || !b) continue;
+      const label = edgeLabel(e.list), dashed = e.list.every(x => x.kind === "event" || x.kind === "delegate") || e.list.some(x => x.via);
+      lines.push(label ? `  ${a} ${dashed ? "-." : "--"} "${mq(label)}" ${dashed ? ".->" : "-->"} ${b}` : `  ${a} ${dashed ? "-.->" : "-->"} ${b}`);
+    }
+    lines.push("  classDef start fill:#e6f6ef,stroke:#0f7b55,color:#0b4d36;");
+    lines.push("  classDef target fill:#fceaf1,stroke:#b4235a,color:#7a1239,stroke-width:2px;");
+    lines.push("  classDef more fill:#fff5de,stroke:#95600b,color:#5c3b00,stroke-dasharray:4 3;");
+    for (const k of ["start", "target", "more"]) {
+      const list = vnodes.filter(v => v.kind === k).map(v => ids.get(v.id));
+      if (list.length) lines.push(`  class ${list.join(",")} ${k};`);
+    }
+    lines.push("```");
+    return lines.join("\n");
+  }
+  function copyText(text, btn) {
+    const label = btn.textContent;
+    const done = () => { btn.textContent = "Copied ✓"; btn.classList.add("done"); setTimeout(() => { btn.textContent = label; btn.classList.remove("done"); }, 1600); };
+    const fallback = () => {
+      const t = document.createElement("textarea"); t.value = text; t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select();
+      try { document.execCommand("copy"); done(); } catch (_) { } t.remove();
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  }
+  $("dgMermaid").onclick = () => { if (lastView) copyText(toMermaid(lastView.nodes, lastView.edges), $("dgMermaid")); };
+  $("copyWay").onclick = () => {
+    const p = curWays[curPath];
+    if (!p) return;
+    const vnodes = p.nodes.map((n, i) => ({ id: n.id, top: nm(n).cls, main: nm(n).m, kind: i === 0 ? "start" : i === p.nodes.length - 1 ? "target" : "" }));
+    const vedges = p.edges.map(e => ({ from: e.from, to: e.to, list: [e] }));
+    copyText(toMermaid(vnodes, vedges), $("copyWay"));
+  };
+
+  /** The diagram as a standalone SVG: computed colours are written inline so it looks the same anywhere. */
+  function diagramSvg() {
+    const src = $("dg"), clone = src.cloneNode(true);
+    const props = ["fill", "stroke", "stroke-width", "stroke-dasharray", "opacity", "font-size", "font-weight", "font-family", "letter-spacing"];
+    const from = src.querySelectorAll("*"), to = clone.querySelectorAll("*");
+    from.forEach((el, i) => {
+      const cs = getComputedStyle(el);
+      to[i].setAttribute("style", props.map(p => `${p}:${cs.getPropertyValue(p)}`).join(";"));
+    });
+    clone.querySelectorAll(".hit").forEach(x => x.remove());
+    const pad = 24, x = bounds.x - pad, y = bounds.y - pad, w = bounds.w + pad * 2, h = bounds.h + pad * 2;
+    clone.setAttribute("xmlns", SVGNS);
+    clone.setAttribute("viewBox", `${x} ${y} ${w} ${h}`);
+    clone.setAttribute("width", Math.round(w));
+    clone.setAttribute("height", Math.round(h));
+    clone.removeAttribute("id");
+    const bg = document.createElementNS(SVGNS, "rect");
+    bg.setAttribute("x", x); bg.setAttribute("y", y); bg.setAttribute("width", w); bg.setAttribute("height", h);
+    bg.setAttribute("fill", getComputedStyle(document.querySelector(".dg-card")).backgroundColor);
+    clone.insertBefore(bg, clone.firstChild);
+    return { text: new XMLSerializer().serializeToString(clone), w, h };
+  }
+  function download(href, name) {
+    const a = document.createElement("a");
+    a.href = href; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  const fileBase = () => "callflow-" + (FWD ? "calls-" : "") + T.m.replace(/[^A-Za-z0-9_]+/g, "");
+  $("dgSvg").onclick = () => {
+    if (!bounds) return;
+    const svg = diagramSvg();
+    download(URL.createObjectURL(new Blob([svg.text], { type: "image/svg+xml" })), fileBase() + ".svg");
+  };
+  $("dgPng").onclick = () => {
+    if (!bounds) return;
+    const svg = diagramSvg();
+    const scale = Math.min(2, 8000 / Math.max(svg.w, svg.h));   // browsers refuse very large canvases
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(svg.w * scale); canvas.height = Math.round(svg.h * scale);
+      const ctx = canvas.getContext("2d");
+      ctx.scale(scale, scale);
+      ctx.drawImage(img, 0, 0, svg.w, svg.h);
+      canvas.toBlob(blob => { if (blob) download(URL.createObjectURL(blob), fileBase() + ".png"); }, "image/png");
+    };
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg.text);
+  };
+
+  // ================================================================ callee reports: start on the calls tree
+  if (FWD) {
+    document.querySelector('.tab[data-view="story"]').classList.add("hidden");
+    document.querySelector('.tab[data-view="tree"]').classList.add("hidden");
+    $("lgStart").classList.add("hidden");
+    $("dgDepthLbl").textContent = "How deep:";
+    $("dgHelp").innerHTML = `Read it from <b>left to right</b>: each arrow means <i>"calls"</i>, starting from the method you picked on the left. Click a box to keep only the flows that pass through it. <b>Double-click</b> a method to see its code and details, or a class to open it into its methods. Drag to move, Ctrl + scroll to zoom.`;
+    const ct = document.querySelector('.tab[data-view="ctree"]');
+    ct.classList.remove("hidden");
+    ct.click();
+  }
 
   $("footer").innerHTML = `Generated by CallFlowViewer${DATA.generatedAt ? " on " + esc(DATA.generatedAt) : ""}${DATA.solution ? " for " + esc(DATA.solution) : ""}. ` +
     `Based on your source code only: calls made through reflection or hidden framework conventions can't be seen.` +
+    `<div class="settings">Settings: up to ${DATA.maxNodes} methods and ${DATA.maxDepth} levels` +
+    (S.excludeTests ? ", test projects left out" : "") +
+    ((S.excludeProjects || []).length ? ", projects left out: " + S.excludeProjects.map(esc).join(", ") : "") +
+    ((S.excludeNamespaces || []).length ? ", namespaces left out: " + S.excludeNamespaces.map(esc).join(", ") : "") +
+    (S.source ? ` (from ${esc(S.source)})` : " (defaults)") +
+    `. Change them with <code>callflow.*</code> keys in .editorconfig.</div>` +
     `<div class="credit">Made by Ahmad Nedal. Questions, ideas, or want to contribute? <a href="https://ahmadnedal.me" target="_blank" rel="noopener">ahmadnedal.me</a></div>`;
 })();
 </script>

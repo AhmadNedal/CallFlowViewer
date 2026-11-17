@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CallFlowViewer
 {
     /// <summary>
-    /// Adds "Show call flow to this method" to the Ctrl+. (lightbulb) menu when the caret is on
+    /// Adds "Show call flow to this method" and "Show what this method calls" to the Ctrl+. (lightbulb) menu when the caret is on
     /// a method / constructor / property declaration, or on a call to one.
     /// </summary>
     [ExportCodeRefactoringProvider(Microsoft.CodeAnalysis.LanguageNames.CSharp, Name = nameof(CallFlowRefactoringProvider)), Shared]
@@ -33,7 +33,8 @@ namespace CallFlowViewer
             symbol = symbol.OriginalDefinition;
             if (!symbol.Locations.Any(l => l.IsInSource)) return; // only methods that live in this solution
 
-            context.RegisterRefactoring(new ShowCallFlowCodeAction(document.Project.Solution, symbol));
+            context.RegisterRefactoring(new ShowCallFlowCodeAction(document, symbol, FlowDirection.Callers));
+            context.RegisterRefactoring(new ShowCallFlowCodeAction(document, symbol, FlowDirection.Callees));
         }
 
         /// <summary>Caret is on the signature of a declaration (not inside its body).</summary>

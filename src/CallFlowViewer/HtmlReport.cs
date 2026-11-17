@@ -38,12 +38,23 @@ namespace CallFlowViewer
         {
             var sb = new StringBuilder();
             sb.Append('{');
+            Prop(sb, "direction", g.Direction).Append(',');
             Prop(sb, "target", g.TargetId).Append(',');
             Prop(sb, "solution", g.SolutionName).Append(',');
             Prop(sb, "generatedAt", g.GeneratedAt.ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture)).Append(',');
             sb.Append("\"truncated\":").Append(g.Truncated ? "true" : "false").Append(',');
-            sb.Append("\"maxDepth\":").Append(g.Options.MaxDepth).Append(',');
-            sb.Append("\"maxNodes\":").Append(g.Options.MaxNodes).Append(',');
+            sb.Append("\"maxDepth\":").Append(g.Settings.MaxDepth).Append(',');
+            sb.Append("\"maxNodes\":").Append(g.Settings.MaxNodes).Append(',');
+            sb.Append("\"settings\":{");
+            Prop(sb, "source", g.SettingsSource).Append(',');
+            sb.Append("\"excludeTests\":").Append(g.Settings.ExcludeTests ? "true" : "false").Append(',');
+            StringArray(sb, "excludeProjects", g.Settings.ExcludeProjects).Append(',');
+            StringArray(sb, "excludeNamespaces", g.Settings.ExcludeNamespaces);
+            sb.Append("},");
+            StringArray(sb, "excludedProjects", g.ExcludedProjects).Append(',');
+            sb.Append("\"skippedByNamespace\":").Append(g.SkippedByNamespace).Append(',');
+            sb.Append("\"diScanned\":").Append(g.DiScanned ? "true" : "false").Append(',');
+            sb.Append("\"diRegistrations\":").Append(g.DiRegistrationCount).Append(',');
 
             sb.Append("\"nodes\":[");
             sb.Append(string.Join(",", g.Nodes.Values.Select(n =>
@@ -77,7 +88,22 @@ namespace CallFlowViewer
                     Prop(t, "type", p.Value);
                     return t.Append('}').ToString();
                 })));
-                s.Append(']');
+                s.Append("],");
+                s.Append("\"subscriptions\":[");
+                s.Append(string.Join(",", n.Subscriptions.Select(x =>
+                {
+                    var t = new StringBuilder("{");
+                    Prop(t, "event", x.Event).Append(',');
+                    Prop(t, "by", x.By).Append(',');
+                    Prop(t, "file", x.File).Append(',');
+                    t.Append("\"line\":").Append(x.Line).Append(',');
+                    Prop(t, "code", x.Code);
+                    return t.Append('}').ToString();
+                })));
+                s.Append("],");
+                StringArray(s, "external", n.External).Append(',');
+                s.Append("\"diRegs\":");
+                Registrations(s, n.DiRegistrations);
                 return s.Append('}').ToString();
             })));
             sb.Append("],");
@@ -89,7 +115,18 @@ namespace CallFlowViewer
                 Prop(s, "from", e.From).Append(',');
                 Prop(s, "to", e.To).Append(',');
                 Prop(s, "via", e.Via).Append(',');
+                Prop(s, "kind", e.Kind).Append(',');
+                Prop(s, "detail", e.Detail).Append(',');
                 s.Append("\"lambda\":").Append(e.InsideLambda ? "true" : "false").Append(',');
+                if (e.Di != null)
+                {
+                    s.Append("\"di\":{");
+                    Prop(s, "status", e.Di.Status).Append(',');
+                    Prop(s, "service", e.Di.Service).Append(',');
+                    s.Append("\"regs\":");
+                    Registrations(s, e.Di.Registrations);
+                    s.Append("},");
+                }
                 s.Append("\"sites\":[");
                 s.Append(string.Join(",", e.Sites.Select(site =>
                 {
@@ -99,6 +136,8 @@ namespace CallFlowViewer
                     t.Append("\"column\":").Append(site.Column).Append(',');
                     t.Append("\"contextStart\":").Append(site.ContextStart).Append(',');
                     StringArray(t, "context", site.Context).Append(',');
+                    Prop(t, "kind", site.Kind).Append(',');
+                    Prop(t, "detail", site.Detail).Append(',');
                     Prop(t, "code", site.Code);
                     return t.Append('}').ToString();
                 })));
@@ -107,6 +146,24 @@ namespace CallFlowViewer
             })));
             sb.Append("]}");
             return sb.ToString();
+        }
+
+        private static void Registrations(StringBuilder sb, System.Collections.Generic.IEnumerable<DiRegistration> regs)
+        {
+            sb.Append('[');
+            sb.Append(string.Join(",", regs.Select(r =>
+            {
+                var t = new StringBuilder("{");
+                Prop(t, "service", r.Service?.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat)).Append(',');
+                Prop(t, "impl", r.Implementation?.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat)).Append(',');
+                Prop(t, "lifetime", r.Lifetime).Append(',');
+                Prop(t, "method", r.Method).Append(',');
+                Prop(t, "file", r.File).Append(',');
+                t.Append("\"line\":").Append(r.Line).Append(',');
+                Prop(t, "project", r.Project);
+                return t.Append('}').ToString();
+            })));
+            sb.Append(']');
         }
 
         private static StringBuilder StringArray(StringBuilder sb, string name, System.Collections.Generic.IEnumerable<string> values)
